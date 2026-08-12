@@ -1,0 +1,184 @@
+{
+  "bundle_format_version": 1,
+  "empirical_interval_coverage": 0.8,
+  "estimator_family": "ridge_empirical_interval",
+  "expected_raw_header": "Horizontal_vibration_signals,Vertical_vibration_signals",
+  "expected_signal_rows": 32768,
+  "feature_names": [
+    "condition_id",
+    "age_minutes",
+    "vertical_mean",
+    "vertical_std",
+    "vertical_rms",
+    "vertical_abs_peak",
+    "vertical_peak_to_peak",
+    "vertical_skewness",
+    "vertical_kurtosis",
+    "vertical_crest_factor",
+    "vertical_dominant_frequency_hz",
+    "vertical_spectral_centroid_hz",
+    "vertical_spectral_entropy",
+    "vertical_band_energy_low_fraction",
+    "vertical_band_energy_mid_fraction",
+    "vertical_band_energy_high_fraction"
+  ],
+  "feature_set": "vertical",
+  "fingerprints": {
+    "config_sha256": "202b54ea5595d2ed650c6b3ad9b636ecdb8b01a44adbf53fde8e53cbbed3d25a",
+    "feature_audit_sha256": "208f0d8ac23c0ce4510557feb6c12585bcea8e257bf140ba5e4e4880c60b1a18",
+    "features_sha256": "7f51b2d6d36cd21da65301d406b8e4af47a8abc6ce2c4b5c83a9f12558a623e0",
+    "manifest_sha256": "fa3e354da44c0d49a3534d6242adfe99c6a7b760ba9d889c7a4ed5903471cbac",
+    "selection_sha256": "c7075fb29789d0a70158c3fd4049c0fe64d13f2799301b46b345914194bfa4e7"
+  },
+  "include_age": true,
+  "interval_radius_minutes": 454.50372778050576,
+  "limitations": [
+    "Validated on experimental XJTU-SY bearing runs, not factory deployment data.",
+    "The RUL interval is empirical and is not a formal safety guarantee.",
+    "Unsupported operating conditions cause abstention instead of extrapolation."
+  ],
+  "model_version": "vibralens-rul-0.1.0",
+  "package_versions": {
+    "joblib": "1.5.3",
+    "numpy": "2.0.2",
+    "python": "3.9.6",
+    "scikit_learn": "1.6.1"
+  },
+  "sample_weighting": "equal_total_weight_per_bearing",
+  "sampling_rate_hz": 25600,
+  "supported_condition_ids": [
+    1,
+    2,
+    3
+  ],
+  "validation_interval_metrics": {
+    "macro_bearing_coverage": 0.8020517019800516,
+    "mean_width_minutes": 868.705479721989,
+    "per_bearing": {
+      "Bearing1_3": {
+        "coverage": 0.7215189873417721,
+        "mean_width_minutes": 867.2516206969357,
+        "snapshots": 158
+      },
+      "Bearing2_3": {
+        "coverage": 1.0,
+        "mean_width_minutes": 846.4720992982486,
+        "snapshots": 533
+      },
+      "Bearing3_3": {
+        "coverage": 0.6846361185983828,
+        "mean_width_minutes": 901.2664001850942,
+        "snapshots": 371
+      }
+    },
+    "per_condition": {
+      "1": {
+        "macro_bearing_coverage": 0.7215189873417721,
+        "mean_width_minutes": 867.2516206969357,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.7215189873417721,
+            "mean_width_minutes": 867.2516206969357,
+            "snapshots": 158
+          }
+        },
+        "snapshot_coverage": 0.7215189873417721
+      },
+      "2": {
+        "macro_bearing_coverage": 1.0,
+        "mean_width_minutes": 846.4720992982486,
+        "per_bearing": {
+          "Bearing2_3": {
+            "coverage": 1.0,
+            "mean_width_minutes": 846.4720992982486,
+            "snapshots": 533
+          }
+        },
+        "snapshot_coverage": 1.0
+      },
+      "3": {
+        "macro_bearing_coverage": 0.6846361185983828,
+        "mean_width_minutes": 901.2664001850942,
+        "per_bearing": {
+          "Bearing3_3": {
+            "coverage": 0.6846361185983828,
+            "mean_width_minutes": 901.2664001850942,
+            "snapshots": 371
+          }
+        },
+        "snapshot_coverage": 0.6846361185983828
+      }
+    },
+    "snapshot_coverage": 0.8483992467043314
+  },
+  "validation_point_metrics": {
+    "macro_bearing_mae": 317.88302880477744,
+    "macro_bearing_nmae": 1.3081149246826913,
+    "median_bearing_mae": 395.21480067125304,
+    "per_bearing": {
+      "Bearing1_3": {
+        "mae_minutes": 402.364766167406,
+        "nmae": 2.562832905524879,
+        "observed_lifetime_minutes": 157.0,
+        "snapshots": 158
+      },
+      "Bearing2_3": {
+        "mae_minutes": 156.06951957567313,
+        "nmae": 0.2933637586008893,
+        "observed_lifetime_minutes": 532.0,
+        "snapshots": 533
+      },
+      "Bearing3_3": {
+        "mae_minutes": 395.21480067125304,
+        "nmae": 1.0681481099223056,
+        "observed_lifetime_minutes": 370.0,
+        "snapshots": 371
+      }
+    },
+    "per_condition": {
+      "1": {
+        "macro_bearing_mae": 402.364766167406,
+        "macro_bearing_nmae": 2.562832905524879,
+        "median_bearing_mae": 402.364766167406,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 402.364766167406,
+            "nmae": 2.562832905524879,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          }
+        },
+        "snapshot_mae": 402.364766167406
+      },
+      "2": {
+        "macro_bearing_mae": 156.06951957567313,
+        "macro_bearing_nmae": 0.2933637586008893,
+        "median_bearing_mae": 156.06951957567313,
+        "per_bearing": {
+          "Bearing2_3": {
+            "mae_minutes": 156.06951957567313,
+            "nmae": 0.2933637586008893,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          }
+        },
+        "snapshot_mae": 156.06951957567313
+      },
+      "3": {
+        "macro_bearing_mae": 395.21480067125304,
+        "macro_bearing_nmae": 1.0681481099223056,
+        "median_bearing_mae": 395.21480067125304,
+        "per_bearing": {
+          "Bearing3_3": {
+            "mae_minutes": 395.21480067125304,
+            "nmae": 1.0681481099223056,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "snapshot_mae": 395.21480067125304
+      }
+    },
+    "snapshot_mae": 276.2555348750648
+  }
+}

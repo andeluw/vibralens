@@ -344,6 +344,73 @@ class ModelingTrainingTests(unittest.TestCase):
                 json.loads(output.read_text(encoding="utf-8")),
             )
 
+    def test_finalize_command_exports_the_frozen_selection(self) -> None:
+        with mock.patch(
+            "vibralens.modeling.training.finalize_model",
+            return_value={"held_out_bearings": ["A", "B"]},
+        ) as finalize:
+            exit_code = main(
+                [
+                    "finalize",
+                    "--features",
+                    "features.csv",
+                    "--feature-audit",
+                    "audit.json",
+                    "--manifest",
+                    "manifest.csv",
+                    "--config",
+                    "config.json",
+                    "--selection",
+                    "selection.json",
+                    "--bundle",
+                    "model.joblib",
+                    "--metadata",
+                    "model.json",
+                    "--test-report",
+                    "test.json",
+                ]
+            )
+
+        self.assertEqual(0, exit_code)
+        finalize.assert_called_once_with(
+            Path("features.csv"),
+            Path("audit.json"),
+            Path("manifest.csv"),
+            Path("config.json"),
+            Path("selection.json"),
+            Path("model.joblib"),
+            Path("model.json"),
+            Path("test.json"),
+        )
+
+    def test_verify_command_does_not_require_a_test_report(self) -> None:
+        with mock.patch(
+            "vibralens.modeling.training.verify_model",
+            return_value={"model_version": "test-model"},
+        ) as verify:
+            exit_code = main(
+                [
+                    "verify",
+                    "--features",
+                    "features.csv",
+                    "--feature-audit",
+                    "audit.json",
+                    "--manifest",
+                    "manifest.csv",
+                    "--config",
+                    "config.json",
+                    "--selection",
+                    "selection.json",
+                    "--bundle",
+                    "model.joblib",
+                    "--metadata",
+                    "model.json",
+                ]
+            )
+
+        self.assertEqual(0, exit_code)
+        verify.assert_called_once()
+
 
 if __name__ == "__main__":
     unittest.main()

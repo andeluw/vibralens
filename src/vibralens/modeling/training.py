@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import platform
 from dataclasses import dataclass
 from pathlib import Path
@@ -12,12 +13,24 @@ from typing import Dict, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 import sklearn
+import joblib
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import HistGradientBoostingRegressor
 from sklearn.linear_model import Ridge
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
+from vibralens.data.xjtu_sy import (
+    EXPECTED_HEADER,
+    SAMPLING_RATE_HZ,
+    SIGNAL_ROWS_PER_SNAPSHOT,
+)
+from vibralens.modeling.bundle import (
+    BUNDLE_FORMAT_VERSION,
+    RulModelBundle,
+    load_bundle,
+    save_bundle,
+)
 from vibralens.modeling.metrics import (
     evaluate_interval_predictions,
     evaluate_point_predictions,
@@ -721,6 +734,351 @@ def run_selection(
     }
 
 
+def _verify_selection_fingerprints(
+    selection: Mapping[str, object],
+    *,
+    feature_path: Path,
+    feature_audit_path: Path,
+    manifest_path: Path,
+    config_path: Path,
+) -> None:
+    try:
+        fingerprints = selection["fingerprints"]
+        if not isinstance(fingerprints, Mapping):
+            raise TypeError
+        expected = {
+            "features_sha256": _sha256(feature_path),
+            "feature_audit_sha256": _sha256(feature_audit_path),
+            "manifest_sha256": _sha256(manifest_path),
+            "config_sha256": _sha256(config_path),
+        }
+    except (KeyError, TypeError) as error:
+        raise TrainingError("selection report is missing fingerprints") from error
+    if dict(fingerprints) != expected:
+        raise TrainingError("selection fingerprints do not match current inputs")
+
+
+def _selected_ridge_state(
+    table: FeatureTable,
+    selection: Mapping[str, object],
+) -> Tuple[Pipeline, ModelMatrix, ModelMatrix, float, Mapping[str, object]]:
+    try:
+        selected = selection["selected_candidate"]
+        if not isinstance(selected, Mapping):
+            raise TypeError
+        if selected["estimator_family"] != "ridge_empirical_interval":
+            raise TrainingError("selected candidate is not a calibrated Ridge model")
+        feature_set = str(selected["feature_set"])
+        include_age = bool(selected["include_age"])
+        parameters = selected["parameters"]
+        if not isinstance(parameters, Mapping):
+            raise TypeError
+        alpha = float(parameters["alpha"])
+        radius = float(parameters["interval_radius_minutes"])
+    except (KeyError, TypeError, ValueError) as error:
+        raise TrainingError("selection report has an invalid selected candidate") from error
+
+    train = build_model_matrix(
+        table,
+        table.splits == "train",
+        feature_set=feature_set,
+        include_age=include_age,
+    )
+    validation = build_model_matrix(
+        table,
+        table.splits == "validation",
+        feature_set=feature_set,
+        include_age=include_age,
+    )
+    estimator = build_ridge_pipeline(alpha, train.values.shape[1])
+    with np.errstate(over="ignore", divide="ignore", invalid="ignore"):
+        estimator.fit(
+            train.values,
+            train.targets,
+            regressor__sample_weight=bearing_balanced_sample_weights(
+                train.bearing_ids
+            ),
+        )
+    return estimator, train, validation, radius, selected
+
+
+def _predict_matrix(estimator: object, matrix: ModelMatrix) -> np.ndarray:
+    with np.errstate(over="ignore", divide="ignore", invalid="ignore"):
+        predictions = np.maximum(
+            np.asarray(estimator.predict(matrix.values), dtype=np.float64),  # type: ignore[attr-defined]
+            0.0,
+        )
+    if predictions.shape != matrix.targets.shape or not np.isfinite(predictions).all():
+        raise TrainingError("selected estimator produced invalid predictions")
+    return predictions
+
+
+def _assert_close(actual: float, expected: float, description: str) -> None:
+    if not math.isclose(actual, expected, rel_tol=0.0, abs_tol=1e-9):
+        raise TrainingError(
+            "{} did not reproduce: actual={}, expected={}".format(
+                description,
+                actual,
+                expected,
+            )
+        )
+
+
+def _reproduce_validation_selection(
+    estimator: object,
+    validation: ModelMatrix,
+    radius: float,
+    selected: Mapping[str, object],
+) -> Tuple[Dict[str, object], Dict[str, object]]:
+    predictions = _predict_matrix(estimator, validation)
+    point_metrics = _point_metrics_by_condition(validation, predictions)
+    interval_metrics = _interval_metrics_by_condition(
+        validation,
+        np.maximum(predictions - radius, 0.0),
+        predictions + radius,
+    )
+    try:
+        recorded_point = selected["validation_point_metrics"]
+        recorded_interval = selected["validation_interval_metrics"]
+        if not isinstance(recorded_point, Mapping) or not isinstance(
+            recorded_interval,
+            Mapping,
+        ):
+            raise TypeError
+        _assert_close(
+            float(point_metrics["macro_bearing_mae"]),
+            float(recorded_point["macro_bearing_mae"]),
+            "validation macro bearing MAE",
+        )
+        _assert_close(
+            float(interval_metrics["macro_bearing_coverage"]),
+            float(recorded_interval["macro_bearing_coverage"]),
+            "validation macro bearing interval coverage",
+        )
+        _assert_close(
+            float(interval_metrics["mean_width_minutes"]),
+            float(recorded_interval["mean_width_minutes"]),
+            "validation interval width",
+        )
+    except (KeyError, TypeError, ValueError) as error:
+        raise TrainingError("selected validation metrics are incomplete") from error
+    return point_metrics, interval_metrics
+
+
+def finalize_model(
+    feature_path: Path,
+    feature_audit_path: Path,
+    manifest_path: Path,
+    config_path: Path,
+    selection_path: Path,
+    bundle_path: Path,
+    metadata_path: Path,
+    test_report_path: Path,
+) -> Dict[str, object]:
+    """Reproduce the frozen selection, evaluate held-out bearings, and export."""
+    feature_path = Path(feature_path)
+    feature_audit_path = Path(feature_audit_path)
+    manifest_path = Path(manifest_path)
+    config_path = Path(config_path)
+    selection_path = Path(selection_path)
+    bundle_path = Path(bundle_path)
+    metadata_path = Path(metadata_path)
+    test_report_path = Path(test_report_path)
+    existing_outputs = [
+        path
+        for path in (bundle_path, metadata_path, test_report_path)
+        if path.exists()
+    ]
+    if existing_outputs:
+        raise TrainingError(
+            "finalization outputs already exist: {}".format(
+                ", ".join(str(path) for path in existing_outputs)
+            )
+        )
+    selection = _read_json(selection_path, "selection report")
+    _verify_selection_fingerprints(
+        selection,
+        feature_path=feature_path,
+        feature_audit_path=feature_audit_path,
+        manifest_path=manifest_path,
+        config_path=config_path,
+    )
+    try:
+        if selection["test_metrics_status"] != "not_evaluated":
+            raise TrainingError("selection report has already evaluated test metrics")
+        gate = selection["vibration_gate"]
+        if not isinstance(gate, Mapping) or gate.get("passed") is not True:
+            raise TrainingError("selected model did not pass the validation gate")
+    except KeyError as error:
+        raise TrainingError("selection report is incomplete") from error
+
+    table = load_feature_table(feature_path)
+    if "test" not in set(table.splits.tolist()):
+        raise TrainingError("feature table contains no held-out test rows")
+    estimator, train, validation, radius, selected = _selected_ridge_state(
+        table,
+        selection,
+    )
+    validation_point, validation_interval = _reproduce_validation_selection(
+        estimator,
+        validation,
+        radius,
+        selected,
+    )
+    test = build_model_matrix(
+        table,
+        table.splits == "test",
+        feature_set=str(selected["feature_set"]),
+        include_age=bool(selected["include_age"]),
+    )
+    test_predictions = _predict_matrix(estimator, test)
+    test_point = _point_metrics_by_condition(test, test_predictions)
+    test_interval = _interval_metrics_by_condition(
+        test,
+        np.maximum(test_predictions - radius, 0.0),
+        test_predictions + radius,
+    )
+
+    limitations = [
+        "Validated on experimental XJTU-SY bearing runs, not factory deployment data.",
+        "The RUL interval is empirical and is not a formal safety guarantee.",
+        "Unsupported operating conditions cause abstention instead of extrapolation.",
+    ]
+    metadata: Dict[str, object] = {
+        "bundle_format_version": BUNDLE_FORMAT_VERSION,
+        "model_version": str(selection["model_version"]),
+        "estimator_family": "ridge_empirical_interval",
+        "feature_set": str(selected["feature_set"]),
+        "include_age": bool(selected["include_age"]),
+        "feature_names": list(train.feature_names),
+        "expected_raw_header": EXPECTED_HEADER,
+        "expected_signal_rows": SIGNAL_ROWS_PER_SNAPSHOT,
+        "sampling_rate_hz": SAMPLING_RATE_HZ,
+        "supported_condition_ids": sorted(set(train.condition_ids.tolist())),
+        "interval_radius_minutes": radius,
+        "empirical_interval_coverage": float(
+            selected["parameters"]["empirical_interval_coverage"]  # type: ignore[index]
+        ),
+        "sample_weighting": "equal_total_weight_per_bearing",
+        "fingerprints": {
+            **dict(selection["fingerprints"]),  # type: ignore[arg-type]
+            "selection_sha256": _sha256(selection_path),
+        },
+        "package_versions": {
+            "python": platform.python_version(),
+            "numpy": np.__version__,
+            "scikit_learn": sklearn.__version__,
+            "joblib": joblib.__version__,
+        },
+        "validation_point_metrics": validation_point,
+        "validation_interval_metrics": validation_interval,
+        "limitations": limitations,
+    }
+    bundle = RulModelBundle(
+        bundle_format_version=BUNDLE_FORMAT_VERSION,
+        model_version=str(selection["model_version"]),
+        estimator=estimator,
+        interval_radius_minutes=radius,
+        feature_set=str(selected["feature_set"]),
+        include_age=bool(selected["include_age"]),
+        feature_names=train.feature_names,
+        supported_condition_ids=tuple(metadata["supported_condition_ids"]),  # type: ignore[arg-type]
+        metadata=metadata,
+    )
+    save_bundle(bundle, bundle_path, metadata_path)
+
+    test_report: Dict[str, object] = {
+        "schema_version": 1,
+        "model_version": str(selection["model_version"]),
+        "selection_sha256": _sha256(selection_path),
+        "bundle_metadata_sha256": _sha256(metadata_path),
+        "held_out_bearings": sorted(set(test.bearing_ids.tolist())),
+        "held_out_conditions": sorted(set(test.condition_ids.tolist())),
+        "point_metrics": test_point,
+        "interval_metrics": test_interval,
+        "limitations": limitations,
+    }
+    _write_json(test_report_path, test_report)
+    return test_report
+
+
+def verify_model(
+    feature_path: Path,
+    feature_audit_path: Path,
+    manifest_path: Path,
+    config_path: Path,
+    selection_path: Path,
+    bundle_path: Path,
+    metadata_path: Path,
+) -> Dict[str, object]:
+    """Verify fingerprints, frozen validation metrics, and bundle compatibility."""
+    feature_path = Path(feature_path)
+    feature_audit_path = Path(feature_audit_path)
+    manifest_path = Path(manifest_path)
+    config_path = Path(config_path)
+    selection_path = Path(selection_path)
+    selection = _read_json(selection_path, "selection report")
+    _verify_selection_fingerprints(
+        selection,
+        feature_path=feature_path,
+        feature_audit_path=feature_audit_path,
+        manifest_path=manifest_path,
+        config_path=config_path,
+    )
+    try:
+        gate = selection["vibration_gate"]
+        if not isinstance(gate, Mapping) or gate.get("passed") is not True:
+            raise TrainingError("selected model did not pass the validation gate")
+    except KeyError as error:
+        raise TrainingError("selection report is incomplete") from error
+
+    table = load_feature_table(feature_path)
+    _, train, validation, radius, selected = _selected_ridge_state(table, selection)
+    bundle = load_bundle(bundle_path)
+    sidecar = _read_json(metadata_path, "model metadata")
+    if dict(bundle.metadata) != dict(sidecar):
+        raise TrainingError("bundle metadata does not match its JSON sidecar")
+
+    expected_fingerprints = {
+        **dict(selection["fingerprints"]),  # type: ignore[arg-type]
+        "selection_sha256": _sha256(selection_path),
+    }
+    expected_contract = {
+        "model_version": str(selection["model_version"]),
+        "feature_set": str(selected["feature_set"]),
+        "include_age": bool(selected["include_age"]),
+        "feature_names": train.feature_names,
+        "supported_condition_ids": tuple(sorted(set(train.condition_ids.tolist()))),
+    }
+    if bundle.model_version != expected_contract["model_version"]:
+        raise TrainingError("bundle model version does not match selection")
+    if bundle.feature_set != expected_contract["feature_set"]:
+        raise TrainingError("bundle feature set does not match selection")
+    if bundle.include_age != expected_contract["include_age"]:
+        raise TrainingError("bundle age schema does not match selection")
+    if bundle.feature_names != expected_contract["feature_names"]:
+        raise TrainingError("bundle feature names do not match training matrix")
+    if bundle.supported_condition_ids != expected_contract["supported_condition_ids"]:
+        raise TrainingError("bundle supported conditions do not match training data")
+    _assert_close(bundle.interval_radius_minutes, radius, "bundle interval radius")
+    if dict(bundle.metadata.get("fingerprints", {})) != expected_fingerprints:
+        raise TrainingError("bundle fingerprints do not match current inputs")
+
+    validation_point, validation_interval = _reproduce_validation_selection(
+        bundle.estimator,
+        validation,
+        bundle.interval_radius_minutes,
+        selected,
+    )
+    return {
+        "status": "verified",
+        "model_version": bundle.model_version,
+        "validation_point_metrics": validation_point,
+        "validation_interval_metrics": validation_interval,
+        "fingerprints": expected_fingerprints,
+    }
+
+
 def _write_json(path: Path, payload: Mapping[str, object]) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -741,6 +1099,31 @@ def _build_argument_parser() -> argparse.ArgumentParser:
     select_parser.add_argument("--manifest", required=True, type=Path)
     select_parser.add_argument("--config", required=True, type=Path)
     select_parser.add_argument("--output", required=True, type=Path)
+
+    finalize_parser = subparsers.add_parser(
+        "finalize",
+        help="Export the selected model and evaluate the held-out bearings once.",
+    )
+    finalize_parser.add_argument("--features", required=True, type=Path)
+    finalize_parser.add_argument("--feature-audit", required=True, type=Path)
+    finalize_parser.add_argument("--manifest", required=True, type=Path)
+    finalize_parser.add_argument("--config", required=True, type=Path)
+    finalize_parser.add_argument("--selection", required=True, type=Path)
+    finalize_parser.add_argument("--bundle", required=True, type=Path)
+    finalize_parser.add_argument("--metadata", required=True, type=Path)
+    finalize_parser.add_argument("--test-report", required=True, type=Path)
+
+    verify_parser = subparsers.add_parser(
+        "verify",
+        help="Reproduce validation evidence and verify a model bundle.",
+    )
+    verify_parser.add_argument("--features", required=True, type=Path)
+    verify_parser.add_argument("--feature-audit", required=True, type=Path)
+    verify_parser.add_argument("--manifest", required=True, type=Path)
+    verify_parser.add_argument("--config", required=True, type=Path)
+    verify_parser.add_argument("--selection", required=True, type=Path)
+    verify_parser.add_argument("--bundle", required=True, type=Path)
+    verify_parser.add_argument("--metadata", required=True, type=Path)
     return parser
 
 
@@ -759,6 +1142,38 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 args.output,
                 report["vibration_gate"]["passed"],  # type: ignore[index]
             )
+        )
+        return 0
+    if args.command == "finalize":
+        report = finalize_model(
+            args.features,
+            args.feature_audit,
+            args.manifest,
+            args.config,
+            args.selection,
+            args.bundle,
+            args.metadata,
+            args.test_report,
+        )
+        print(
+            "Model finalized at {}; held-out bearings={}".format(
+                args.bundle,
+                len(report["held_out_bearings"]),
+            )
+        )
+        return 0
+    if args.command == "verify":
+        report = verify_model(
+            args.features,
+            args.feature_audit,
+            args.manifest,
+            args.config,
+            args.selection,
+            args.bundle,
+            args.metadata,
+        )
+        print(
+            "Model {} verified".format(report["model_version"])
         )
         return 0
     raise TrainingError("unsupported training command")
