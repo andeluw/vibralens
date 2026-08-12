@@ -9,9 +9,12 @@ description = "Leakage-safe bearing prognostics and maintenance decision support
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
+  "fastapi>=0.115,<1",
   "joblib>=1.4,<2",
   "numpy>=1.26,<3",
+  "python-multipart>=0.0.9,<1",
   "scikit-learn>=1.5,<1.7",
+  "uvicorn>=0.30,<1",
 ]
 
 [project.scripts]
@@ -22,3 +25,8 @@ vibralens-train-rul = "vibralens.modeling.training:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.27,<1",
+]
