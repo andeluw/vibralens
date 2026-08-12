@@ -17,6 +17,7 @@ dependencies = [
 [project.scripts]
 vibralens-build-manifest = "vibralens.data.xjtu_sy:main"
 vibralens-extract-features = "vibralens.features.vibration:main"
+vibralens-train-rul = "vibralens.modeling.training:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,0 +1,4168 @@
+{
+  "age_only_validation": {
+    "macro_bearing_mae": 775.9163322012968,
+    "macro_bearing_nmae": 2.069868172248632,
+    "median_bearing_mae": 166.609756097561,
+    "per_bearing": {
+      "Bearing1_3": {
+        "mae_minutes": 15.139240506329115,
+        "nmae": 0.09642828347980328,
+        "observed_lifetime_minutes": 157.0,
+        "snapshots": 158
+      },
+      "Bearing2_3": {
+        "mae_minutes": 166.609756097561,
+        "nmae": 0.31317623326609206,
+        "observed_lifetime_minutes": 532.0,
+        "snapshots": 533
+      },
+      "Bearing3_3": {
+        "mae_minutes": 2146.0,
+        "nmae": 5.8,
+        "observed_lifetime_minutes": 370.0,
+        "snapshots": 371
+      }
+    },
+    "per_condition": {
+      "1": {
+        "macro_bearing_mae": 15.139240506329115,
+        "macro_bearing_nmae": 0.09642828347980328,
+        "median_bearing_mae": 15.139240506329115,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 15.139240506329115,
+            "nmae": 0.09642828347980328,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          }
+        },
+        "snapshot_mae": 15.139240506329115
+      },
+      "2": {
+        "macro_bearing_mae": 166.609756097561,
+        "macro_bearing_nmae": 0.31317623326609206,
+        "median_bearing_mae": 166.609756097561,
+        "per_bearing": {
+          "Bearing2_3": {
+            "mae_minutes": 166.609756097561,
+            "nmae": 0.31317623326609206,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          }
+        },
+        "snapshot_mae": 166.609756097561
+      },
+      "3": {
+        "macro_bearing_mae": 2146.0,
+        "macro_bearing_nmae": 5.8,
+        "median_bearing_mae": 2146.0,
+        "per_bearing": {
+          "Bearing3_3": {
+            "mae_minutes": 2146.0,
+            "nmae": 5.8,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "snapshot_mae": 2146.0
+      }
+    },
+    "snapshot_mae": 835.5564971751412
+  },
+  "fingerprints": {
+    "config_sha256": "202b54ea5595d2ed650c6b3ad9b636ecdb8b01a44adbf53fde8e53cbbed3d25a",
+    "feature_audit_sha256": "208f0d8ac23c0ce4510557feb6c12585bcea8e257bf140ba5e4e4880c60b1a18",
+    "features_sha256": "7f51b2d6d36cd21da65301d406b8e4af47a8abc6ce2c4b5c83a9f12558a623e0",
+    "manifest_sha256": "fa3e354da44c0d49a3534d6242adfe99c6a7b760ba9d889c7a4ed5903471cbac"
+  },
+  "model_version": "vibralens-rul-0.1.0",
+  "quantile_candidates": [
+    {
+      "candidate_id": "hgbq-horizontal-age0-candidate1",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "horizontal",
+      "include_age": false,
+      "parameters": {
+        "l2_regularization": 1.0,
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 40,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.09476647554146432,
+        "mean_width_minutes": 410.4841356770544,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.12025316455696203,
+            "mean_width_minutes": 49.18746739566466,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.16135084427767354,
+            "mean_width_minutes": 100.34551903783674,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.0026954177897574125,
+            "mean_width_minutes": 1009.9147455346356,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.12025316455696203,
+            "mean_width_minutes": 49.18746739566466,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.12025316455696203,
+                "mean_width_minutes": 49.18746739566466,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.12025316455696203
+          },
+          "2": {
+            "macro_bearing_coverage": 0.16135084427767354,
+            "mean_width_minutes": 100.34551903783674,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.16135084427767354,
+                "mean_width_minutes": 100.34551903783674,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.16135084427767354
+          },
+          "3": {
+            "macro_bearing_coverage": 0.0026954177897574125,
+            "mean_width_minutes": 1009.9147455346356,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.0026954177897574125,
+                "mean_width_minutes": 1009.9147455346356,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.0026954177897574125
+          }
+        },
+        "snapshot_coverage": 0.09981167608286252
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 574.8655769880775,
+        "macro_bearing_nmae": 1.5708230335343802,
+        "median_bearing_mae": 104.92411900274485,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 37.56753039647218,
+            "nmae": 0.23928363309854891,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 104.92411900274485,
+            "nmae": 0.19722578759914444,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1582.1050815650153,
+            "nmae": 4.275959679905447,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 37.56753039647218,
+            "macro_bearing_nmae": 0.23928363309854891,
+            "median_bearing_mae": 37.56753039647218,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 37.56753039647218,
+                "nmae": 0.23928363309854891,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 37.56753039647218
+          },
+          "2": {
+            "macro_bearing_mae": 104.92411900274485,
+            "macro_bearing_nmae": 0.19722578759914444,
+            "median_bearing_mae": 104.92411900274485,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 104.92411900274485,
+                "nmae": 0.19722578759914444,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 104.92411900274485
+          },
+          "3": {
+            "macro_bearing_mae": 1582.1050815650153,
+            "macro_bearing_nmae": 4.275959679905447,
+            "median_bearing_mae": 1582.1050815650153,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1582.1050815650153,
+                "nmae": 4.275959679905447,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1582.1050815650153
+          }
+        },
+        "snapshot_mae": 610.9427594084054
+      }
+    },
+    {
+      "candidate_id": "hgbq-horizontal-age0-candidate2",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "horizontal",
+      "include_age": false,
+      "parameters": {
+        "l2_regularization": 5.0,
+        "learning_rate": 0.03,
+        "max_iter": 500,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 60,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.1970333632767298,
+        "mean_width_minutes": 396.2642853061577,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.23417721518987342,
+            "mean_width_minutes": 50.50206784327765,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.324577861163227,
+            "mean_width_minutes": 119.73968108454287,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.03234501347708895,
+            "mean_width_minutes": 940.7873160588688,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.23417721518987342,
+            "mean_width_minutes": 50.50206784327765,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.23417721518987342,
+                "mean_width_minutes": 50.50206784327765,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.23417721518987342
+          },
+          "2": {
+            "macro_bearing_coverage": 0.324577861163227,
+            "mean_width_minutes": 119.73968108454287,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.324577861163227,
+                "mean_width_minutes": 119.73968108454287,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.324577861163227
+          },
+          "3": {
+            "macro_bearing_coverage": 0.03234501347708895,
+            "mean_width_minutes": 940.7873160588688,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.03234501347708895,
+                "mean_width_minutes": 940.7873160588688,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.03234501347708895
+          }
+        },
+        "snapshot_coverage": 0.20903954802259886
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 591.2660221235038,
+        "macro_bearing_nmae": 1.6206314089257912,
+        "median_bearing_mae": 102.58622030655384,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 41.528680757942546,
+            "nmae": 0.264513890177978,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 102.58622030655384,
+            "nmae": 0.1928312411777328,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1629.683165306015,
+            "nmae": 4.404549095421663,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 41.528680757942546,
+            "macro_bearing_nmae": 0.264513890177978,
+            "median_bearing_mae": 41.528680757942546,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 41.528680757942546,
+                "nmae": 0.264513890177978,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 41.528680757942546
+          },
+          "2": {
+            "macro_bearing_mae": 102.58622030655384,
+            "macro_bearing_nmae": 0.1928312411777328,
+            "median_bearing_mae": 102.58622030655384,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 102.58622030655384,
+                "nmae": 0.1928312411777328,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 102.58622030655384
+          },
+          "3": {
+            "macro_bearing_mae": 1629.683165306015,
+            "macro_bearing_nmae": 4.404549095421663,
+            "median_bearing_mae": 1629.683165306015,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1629.683165306015,
+                "nmae": 4.404549095421663,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1629.683165306015
+          }
+        },
+        "snapshot_mae": 626.9796999168359
+      }
+    },
+    {
+      "candidate_id": "hgbq-dual-age0-candidate2",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "dual",
+      "include_age": false,
+      "parameters": {
+        "l2_regularization": 5.0,
+        "learning_rate": 0.03,
+        "max_iter": 500,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 60,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.18821408028419276,
+        "mean_width_minutes": 397.52074663876584,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.34177215189873417,
+            "mean_width_minutes": 78.01914158536883,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.150093808630394,
+            "mean_width_minutes": 118.76682300935235,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.07277628032345014,
+            "mean_width_minutes": 934.0627813905558,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.34177215189873417,
+            "mean_width_minutes": 78.01914158536883,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.34177215189873417,
+                "mean_width_minutes": 78.01914158536883,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.34177215189873417
+          },
+          "2": {
+            "macro_bearing_coverage": 0.150093808630394,
+            "mean_width_minutes": 118.76682300935235,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.150093808630394,
+                "mean_width_minutes": 118.76682300935235,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.150093808630394
+          },
+          "3": {
+            "macro_bearing_coverage": 0.07277628032345014,
+            "mean_width_minutes": 934.0627813905558,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.07277628032345014,
+                "mean_width_minutes": 934.0627813905558,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.07277628032345014
+          }
+        },
+        "snapshot_coverage": 0.15160075329566855
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 600.6857592563505,
+        "macro_bearing_nmae": 1.6274931974200069,
+        "median_bearing_mae": 125.20658775261093,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 31.390410058335004,
+            "nmae": 0.19993891756901278,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 125.20658775261093,
+            "nmae": 0.23535072885829122,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1645.4602799581053,
+            "nmae": 4.447189945832717,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 31.390410058335004,
+            "macro_bearing_nmae": 0.19993891756901278,
+            "median_bearing_mae": 31.390410058335004,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 31.390410058335004,
+                "nmae": 0.19993891756901278,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 31.390410058335004
+          },
+          "2": {
+            "macro_bearing_mae": 125.20658775261093,
+            "macro_bearing_nmae": 0.23535072885829122,
+            "median_bearing_mae": 125.20658775261093,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 125.20658775261093,
+                "nmae": 0.23535072885829122,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 125.20658775261093
+          },
+          "3": {
+            "macro_bearing_mae": 1645.4602799581053,
+            "macro_bearing_nmae": 4.447189945832717,
+            "median_bearing_mae": 1645.4602799581053,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1645.4602799581053,
+                "nmae": 4.447189945832717,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1645.4602799581053
+          }
+        },
+        "snapshot_mae": 642.3357438096192
+      }
+    },
+    {
+      "candidate_id": "hgbq-dual-age0-candidate1",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "dual",
+      "include_age": false,
+      "parameters": {
+        "l2_regularization": 1.0,
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 40,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.1369678445732667,
+        "mean_width_minutes": 512.4760916575972,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.13291139240506328,
+            "mean_width_minutes": 67.00883480136315,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.22138836772983114,
+            "mean_width_minutes": 131.8245506266652,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.05660377358490566,
+            "mean_width_minutes": 1249.0558705060384,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.13291139240506328,
+            "mean_width_minutes": 67.00883480136315,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.13291139240506328,
+                "mean_width_minutes": 67.00883480136315,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.13291139240506328
+          },
+          "2": {
+            "macro_bearing_coverage": 0.22138836772983114,
+            "mean_width_minutes": 131.8245506266652,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.22138836772983114,
+                "mean_width_minutes": 131.8245506266652,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.22138836772983114
+          },
+          "3": {
+            "macro_bearing_coverage": 0.05660377358490566,
+            "mean_width_minutes": 1249.0558705060384,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.05660377358490566,
+                "mean_width_minutes": 1249.0558705060384,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.05660377358490566
+          }
+        },
+        "snapshot_coverage": 0.15065913370998116
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 606.67430733236,
+        "macro_bearing_nmae": 1.6726969385132389,
+        "median_bearing_mae": 123.61556856157351,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 54.77532057655126,
+            "nmae": 0.34888739220733284,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 123.61556856157351,
+            "nmae": 0.2323600912811532,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1641.6320328589552,
+            "nmae": 4.436843332051231,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 54.77532057655126,
+            "macro_bearing_nmae": 0.34888739220733284,
+            "median_bearing_mae": 54.77532057655126,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 54.77532057655126,
+                "nmae": 0.34888739220733284,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 54.77532057655126
+          },
+          "2": {
+            "macro_bearing_mae": 123.61556856157351,
+            "macro_bearing_nmae": 0.2323600912811532,
+            "median_bearing_mae": 123.61556856157351,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 123.61556856157351,
+                "nmae": 0.2323600912811532,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 123.61556856157351
+          },
+          "3": {
+            "macro_bearing_mae": 1641.6320328589552,
+            "macro_bearing_nmae": 4.436843332051231,
+            "median_bearing_mae": 1641.6320328589552,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1641.6320328589552,
+                "nmae": 4.436843332051231,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1641.6320328589552
+          }
+        },
+        "snapshot_mae": 643.678985767501
+      }
+    },
+    {
+      "candidate_id": "hgbq-vertical-age0-candidate1",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "vertical",
+      "include_age": false,
+      "parameters": {
+        "l2_regularization": 1.0,
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 40,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.08210020332618152,
+        "mean_width_minutes": 384.5971190623993,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.12025316455696203,
+            "mean_width_minutes": 69.43371010540427,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.1125703564727955,
+            "mean_width_minutes": 52.22416254391263,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.013477088948787063,
+            "mean_width_minutes": 996.3238156649832,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.12025316455696203,
+            "mean_width_minutes": 69.43371010540427,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.12025316455696203,
+                "mean_width_minutes": 69.43371010540427,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.12025316455696203
+          },
+          "2": {
+            "macro_bearing_coverage": 0.1125703564727955,
+            "mean_width_minutes": 52.22416254391263,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.1125703564727955,
+                "mean_width_minutes": 52.22416254391263,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.1125703564727955
+          },
+          "3": {
+            "macro_bearing_coverage": 0.013477088948787063,
+            "mean_width_minutes": 996.3238156649832,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.013477088948787063,
+                "mean_width_minutes": 996.3238156649832,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.013477088948787063
+          }
+        },
+        "snapshot_coverage": 0.07909604519774012
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 611.3681974140424,
+        "macro_bearing_nmae": 1.6713659262134115,
+        "median_bearing_mae": 185.78532034972457,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 57.26100404804133,
+            "nmae": 0.36471977100663266,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 185.78532034972457,
+            "nmae": 0.34922052697316647,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1591.0582678443611,
+            "nmae": 4.3001574806604355,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 57.26100404804133,
+            "macro_bearing_nmae": 0.36471977100663266,
+            "median_bearing_mae": 57.26100404804133,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 57.26100404804133,
+                "nmae": 0.36471977100663266,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 57.26100404804133
+          },
+          "2": {
+            "macro_bearing_mae": 185.78532034972457,
+            "macro_bearing_nmae": 0.34922052697316647,
+            "median_bearing_mae": 185.78532034972457,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 185.78532034972457,
+                "nmae": 0.34922052697316647,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 185.78532034972457
+          },
+          "3": {
+            "macro_bearing_mae": 1591.0582678443611,
+            "macro_bearing_nmae": 4.3001574806604355,
+            "median_bearing_mae": 1591.0582678443611,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1591.0582678443611,
+                "nmae": 4.3001574806604355,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1591.0582678443611
+          }
+        },
+        "snapshot_mae": 657.5832690736834
+      }
+    },
+    {
+      "candidate_id": "hgbq-vertical-age0-candidate2",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "vertical",
+      "include_age": false,
+      "parameters": {
+        "l2_regularization": 5.0,
+        "learning_rate": 0.03,
+        "max_iter": 500,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 60,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.08268604450165264,
+        "mean_width_minutes": 359.9709351965864,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.12658227848101267,
+            "mean_width_minutes": 77.75713654844851,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.11069418386491557,
+            "mean_width_minutes": 52.51067643493741,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.01078167115902965,
+            "mean_width_minutes": 921.8741645937961,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.12658227848101267,
+            "mean_width_minutes": 77.75713654844851,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.12658227848101267,
+                "mean_width_minutes": 77.75713654844851,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.12658227848101267
+          },
+          "2": {
+            "macro_bearing_coverage": 0.11069418386491557,
+            "mean_width_minutes": 52.51067643493741,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.11069418386491557,
+                "mean_width_minutes": 52.51067643493741,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.11069418386491557
+          },
+          "3": {
+            "macro_bearing_coverage": 0.01078167115902965,
+            "mean_width_minutes": 921.8741645937961,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.01078167115902965,
+                "mean_width_minutes": 921.8741645937961,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.01078167115902965
+          }
+        },
+        "snapshot_coverage": 0.07815442561205273
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 616.5920706667031,
+        "macro_bearing_nmae": 1.6628467182941626,
+        "median_bearing_mae": 182.89261298984852,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 38.09019652437866,
+            "nmae": 0.24261271671578766,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 182.89261298984852,
+            "nmae": 0.3437831071237754,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1628.793402485882,
+            "nmae": 4.4021443310429245,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 38.09019652437866,
+            "macro_bearing_nmae": 0.24261271671578766,
+            "median_bearing_mae": 38.09019652437866,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 38.09019652437866,
+                "nmae": 0.24261271671578766,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 38.09019652437866
+          },
+          "2": {
+            "macro_bearing_mae": 182.89261298984852,
+            "macro_bearing_nmae": 0.3437831071237754,
+            "median_bearing_mae": 182.89261298984852,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 182.89261298984852,
+                "nmae": 0.3437831071237754,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 182.89261298984852
+          },
+          "3": {
+            "macro_bearing_mae": 1628.793402485882,
+            "macro_bearing_nmae": 4.4021443310429245,
+            "median_bearing_mae": 1628.793402485882,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1628.793402485882,
+                "nmae": 4.4021443310429245,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1628.793402485882
+          }
+        },
+        "snapshot_mae": 666.461738320813
+      }
+    },
+    {
+      "candidate_id": "hgbq-vertical-age1-candidate1",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "vertical",
+      "include_age": true,
+      "parameters": {
+        "l2_regularization": 1.0,
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 40,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.21974176898536268,
+        "mean_width_minutes": 335.1388728250833,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.5316455696202531,
+            "mean_width_minutes": 127.10654009934312,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.1275797373358349,
+            "mean_width_minutes": 70.2030469050073,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.0,
+            "mean_width_minutes": 804.3569423293081,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.5316455696202531,
+            "mean_width_minutes": 127.10654009934312,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.5316455696202531,
+                "mean_width_minutes": 127.10654009934312,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.5316455696202531
+          },
+          "2": {
+            "macro_bearing_coverage": 0.1275797373358349,
+            "mean_width_minutes": 70.2030469050073,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.1275797373358349,
+                "mean_width_minutes": 70.2030469050073,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.1275797373358349
+          },
+          "3": {
+            "macro_bearing_coverage": 0.0,
+            "mean_width_minutes": 804.3569423293081,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.0,
+                "mean_width_minutes": 804.3569423293081,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.0
+          }
+        },
+        "snapshot_coverage": 0.1431261770244821
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 677.2587151981032,
+        "macro_bearing_nmae": 1.8070575008436467,
+        "median_bearing_mae": 176.72618413883174,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 20.54473737410247,
+            "nmae": 0.1308581998350476,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 176.72618413883174,
+            "nmae": 0.33219207544893187,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1834.5052240813754,
+            "nmae": 4.95812222724696,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 20.54473737410247,
+            "macro_bearing_nmae": 0.1308581998350476,
+            "median_bearing_mae": 20.54473737410247,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 20.54473737410247,
+                "nmae": 0.1308581998350476,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 20.54473737410247
+          },
+          "2": {
+            "macro_bearing_mae": 176.72618413883174,
+            "macro_bearing_nmae": 0.33219207544893187,
+            "median_bearing_mae": 176.72618413883174,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 176.72618413883174,
+                "nmae": 0.33219207544893187,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 176.72618413883174
+          },
+          "3": {
+            "macro_bearing_mae": 1834.5052240813754,
+            "macro_bearing_nmae": 4.95812222724696,
+            "median_bearing_mae": 1834.5052240813754,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1834.5052240813754,
+                "nmae": 4.95812222724696,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1834.5052240813754
+          }
+        },
+        "snapshot_mae": 732.6201156170395
+      }
+    },
+    {
+      "candidate_id": "hgbq-vertical-age1-candidate2",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "vertical",
+      "include_age": true,
+      "parameters": {
+        "l2_regularization": 5.0,
+        "learning_rate": 0.03,
+        "max_iter": 500,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 60,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.23606922047798862,
+        "mean_width_minutes": 286.66745525136156,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.6012658227848101,
+            "mean_width_minutes": 161.25379119062055,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.10694183864915573,
+            "mean_width_minutes": 76.47033180754735,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.0,
+            "mean_width_minutes": 642.0594383164562,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.6012658227848101,
+            "mean_width_minutes": 161.25379119062055,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.6012658227848101,
+                "mean_width_minutes": 161.25379119062055,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.6012658227848101
+          },
+          "2": {
+            "macro_bearing_coverage": 0.10694183864915573,
+            "mean_width_minutes": 76.47033180754735,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.10694183864915573,
+                "mean_width_minutes": 76.47033180754735,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.10694183864915573
+          },
+          "3": {
+            "macro_bearing_coverage": 0.0,
+            "mean_width_minutes": 642.0594383164562,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.0,
+                "mean_width_minutes": 642.0594383164562,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.0
+          }
+        },
+        "snapshot_coverage": 0.1431261770244821
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 684.8918837036222,
+        "macro_bearing_nmae": 1.8602448449468563,
+        "median_bearing_mae": 177.25804605697877,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 47.30137347416024,
+            "nmae": 0.30128263359337737,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 177.25804605697877,
+            "nmae": 0.33319181589657665,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1830.1162315797276,
+            "nmae": 4.946260085350615,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 47.30137347416024,
+            "macro_bearing_nmae": 0.30128263359337737,
+            "median_bearing_mae": 47.30137347416024,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 47.30137347416024,
+                "nmae": 0.30128263359337737,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 47.30137347416024
+          },
+          "2": {
+            "macro_bearing_mae": 177.25804605697877,
+            "macro_bearing_nmae": 0.33319181589657665,
+            "median_bearing_mae": 177.25804605697877,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 177.25804605697877,
+                "nmae": 0.33319181589657665,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 177.25804605697877
+          },
+          "3": {
+            "macro_bearing_mae": 1830.1162315797276,
+            "macro_bearing_nmae": 4.946260085350615,
+            "median_bearing_mae": 1830.1162315797276,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1830.1162315797276,
+                "nmae": 4.946260085350615,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1830.1162315797276
+          }
+        },
+        "snapshot_mae": 735.334536227275
+      }
+    },
+    {
+      "candidate_id": "hgbq-dual-age1-candidate1",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "dual",
+      "include_age": true,
+      "parameters": {
+        "l2_regularization": 1.0,
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 40,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.13565440425582445,
+        "mean_width_minutes": 363.73975059456575,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.35443037974683544,
+            "mean_width_minutes": 62.717890939059046,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.0525328330206379,
+            "mean_width_minutes": 83.84943347356936,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.0,
+            "mean_width_minutes": 894.0443135354312,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.35443037974683544,
+            "mean_width_minutes": 62.717890939059046,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.35443037974683544,
+                "mean_width_minutes": 62.717890939059046,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.35443037974683544
+          },
+          "2": {
+            "macro_bearing_coverage": 0.0525328330206379,
+            "mean_width_minutes": 83.84943347356936,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.0525328330206379,
+                "mean_width_minutes": 83.84943347356936,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.0525328330206379
+          },
+          "3": {
+            "macro_bearing_coverage": 0.0,
+            "mean_width_minutes": 894.0443135354312,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.0,
+                "mean_width_minutes": 894.0443135354312,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.0
+          }
+        },
+        "snapshot_coverage": 0.07909604519774012
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 708.5208594588265,
+        "macro_bearing_nmae": 1.9304905734225428,
+        "median_bearing_mae": 106.46955515437557,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 36.63564665204957,
+            "nmae": 0.23334806784744952,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 106.46955515437557,
+            "nmae": 0.20013074277138265,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1982.4573765700543,
+            "nmae": 5.357992909648796,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 36.63564665204957,
+            "macro_bearing_nmae": 0.23334806784744952,
+            "median_bearing_mae": 36.63564665204957,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 36.63564665204957,
+                "nmae": 0.23334806784744952,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 36.63564665204957
+          },
+          "2": {
+            "macro_bearing_mae": 106.46955515437557,
+            "macro_bearing_nmae": 0.20013074277138265,
+            "median_bearing_mae": 106.46955515437557,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 106.46955515437557,
+                "nmae": 0.20013074277138265,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 106.46955515437557
+          },
+          "3": {
+            "macro_bearing_mae": 1982.4573765700543,
+            "macro_bearing_nmae": 5.357992909648796,
+            "median_bearing_mae": 1982.4573765700543,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1982.4573765700543,
+                "nmae": 5.357992909648796,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1982.4573765700543
+          }
+        },
+        "snapshot_mae": 751.4391636306932
+      }
+    },
+    {
+      "candidate_id": "hgbq-dual-age1-candidate2",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "dual",
+      "include_age": true,
+      "parameters": {
+        "l2_regularization": 5.0,
+        "learning_rate": 0.03,
+        "max_iter": 500,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 60,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.20601483522138042,
+        "mean_width_minutes": 383.3154144137443,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.3291139240506329,
+            "mean_width_minutes": 86.31501326322136,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.28893058161350843,
+            "mean_width_minutes": 118.77486217571,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.0,
+            "mean_width_minutes": 889.8549770138925,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.3291139240506329,
+            "mean_width_minutes": 86.31501326322136,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.3291139240506329,
+                "mean_width_minutes": 86.31501326322136,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.3291139240506329
+          },
+          "2": {
+            "macro_bearing_coverage": 0.28893058161350843,
+            "mean_width_minutes": 118.77486217571,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.28893058161350843,
+                "mean_width_minutes": 118.77486217571,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.28893058161350843
+          },
+          "3": {
+            "macro_bearing_coverage": 0.0,
+            "mean_width_minutes": 889.8549770138925,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.0,
+                "mean_width_minutes": 889.8549770138925,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.0
+          }
+        },
+        "snapshot_coverage": 0.19397363465160075
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 715.2683626211982,
+        "macro_bearing_nmae": 1.9426246686648352,
+        "median_bearing_mae": 102.76400346049739,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 30.811133835194624,
+            "nmae": 0.19624926009678104,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 102.76400346049739,
+            "nmae": 0.19316542003852893,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 2012.2299505679025,
+            "nmae": 5.438459325859196,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 30.811133835194624,
+            "macro_bearing_nmae": 0.19624926009678104,
+            "median_bearing_mae": 30.811133835194624,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 30.811133835194624,
+                "nmae": 0.19624926009678104,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 30.811133835194624
+          },
+          "2": {
+            "macro_bearing_mae": 102.76400346049739,
+            "macro_bearing_nmae": 0.19316542003852893,
+            "median_bearing_mae": 102.76400346049739,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 102.76400346049739,
+                "nmae": 0.19316542003852893,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 102.76400346049739
+          },
+          "3": {
+            "macro_bearing_mae": 2012.2299505679025,
+            "macro_bearing_nmae": 5.438459325859196,
+            "median_bearing_mae": 2012.2299505679025,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 2012.2299505679025,
+                "nmae": 5.438459325859196,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 2012.2299505679025
+          }
+        },
+        "snapshot_mae": 759.1136390311656
+      }
+    },
+    {
+      "candidate_id": "hgbq-horizontal-age1-candidate2",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "horizontal",
+      "include_age": true,
+      "parameters": {
+        "l2_regularization": 5.0,
+        "learning_rate": 0.03,
+        "max_iter": 500,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 60,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.17623752186888955,
+        "mean_width_minutes": 365.8253565869706,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.2848101265822785,
+            "mean_width_minutes": 28.612793772128537,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.24390243902439024,
+            "mean_width_minutes": 118.62112684217897,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.0,
+            "mean_width_minutes": 864.5839532951082,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.2848101265822785,
+            "mean_width_minutes": 28.612793772128537,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.2848101265822785,
+                "mean_width_minutes": 28.612793772128537,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.2848101265822785
+          },
+          "2": {
+            "macro_bearing_coverage": 0.24390243902439024,
+            "mean_width_minutes": 118.62112684217897,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.24390243902439024,
+                "mean_width_minutes": 118.62112684217897,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.24390243902439024
+          },
+          "3": {
+            "macro_bearing_coverage": 0.0,
+            "mean_width_minutes": 864.5839532951082,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.0,
+                "mean_width_minutes": 864.5839532951082,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.0
+          }
+        },
+        "snapshot_coverage": 0.1647834274952919
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 730.4694960224847,
+        "macro_bearing_nmae": 1.9781533231866488,
+        "median_bearing_mae": 110.97895049605428,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 28.109665304589218,
+            "nmae": 0.17904245416935807,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 110.97895049605428,
+            "nmae": 0.2086070498046133,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 2052.3198722668108,
+            "nmae": 5.546810465585975,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 28.109665304589218,
+            "macro_bearing_nmae": 0.17904245416935807,
+            "median_bearing_mae": 28.109665304589218,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 28.109665304589218,
+                "nmae": 0.17904245416935807,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 28.109665304589218
+          },
+          "2": {
+            "macro_bearing_mae": 110.97895049605428,
+            "macro_bearing_nmae": 0.2086070498046133,
+            "median_bearing_mae": 110.97895049605428,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 110.97895049605428,
+                "nmae": 0.2086070498046133,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 110.97895049605428
+          },
+          "3": {
+            "macro_bearing_mae": 2052.3198722668108,
+            "macro_bearing_nmae": 5.546810465585975,
+            "median_bearing_mae": 2052.3198722668108,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 2052.3198722668108,
+                "nmae": 5.546810465585975,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 2052.3198722668108
+          }
+        },
+        "snapshot_mae": 776.839717837579
+      }
+    },
+    {
+      "candidate_id": "hgbq-horizontal-age1-candidate1",
+      "estimator_family": "hist_gradient_boosting_quantile",
+      "feature_set": "horizontal",
+      "include_age": true,
+      "parameters": {
+        "l2_regularization": 1.0,
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 40,
+        "quantiles": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "validation_interval_metrics": {
+        "macro_bearing_coverage": 0.0886155112768265,
+        "mean_width_minutes": 311.83240549160513,
+        "per_bearing": {
+          "Bearing1_3": {
+            "coverage": 0.21518987341772153,
+            "mean_width_minutes": 34.6513960064158,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "coverage": 0.05065666041275797,
+            "mean_width_minutes": 69.63433582374029,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "coverage": 0.0,
+            "mean_width_minutes": 777.832865415141,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_coverage": 0.21518987341772153,
+            "mean_width_minutes": 34.6513960064158,
+            "per_bearing": {
+              "Bearing1_3": {
+                "coverage": 0.21518987341772153,
+                "mean_width_minutes": 34.6513960064158,
+                "snapshots": 158
+              }
+            },
+            "snapshot_coverage": 0.21518987341772153
+          },
+          "2": {
+            "macro_bearing_coverage": 0.05065666041275797,
+            "mean_width_minutes": 69.63433582374029,
+            "per_bearing": {
+              "Bearing2_3": {
+                "coverage": 0.05065666041275797,
+                "mean_width_minutes": 69.63433582374029,
+                "snapshots": 533
+              }
+            },
+            "snapshot_coverage": 0.05065666041275797
+          },
+          "3": {
+            "macro_bearing_coverage": 0.0,
+            "mean_width_minutes": 777.832865415141,
+            "per_bearing": {
+              "Bearing3_3": {
+                "coverage": 0.0,
+                "mean_width_minutes": 777.832865415141,
+                "snapshots": 371
+              }
+            },
+            "snapshot_coverage": 0.0
+          }
+        },
+        "snapshot_coverage": 0.05743879472693032
+      },
+      "validation_point_metrics": {
+        "macro_bearing_mae": 731.2678909020007,
+        "macro_bearing_nmae": 1.9903036163601857,
+        "median_bearing_mae": 102.52508596606066,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 34.387707367435354,
+            "nmae": 0.21902998323207232,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 102.52508596606066,
+            "nmae": 0.19271632700387342,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 2056.890879372506,
+            "nmae": 5.559164538844611,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 34.387707367435354,
+            "macro_bearing_nmae": 0.21902998323207232,
+            "median_bearing_mae": 34.387707367435354,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 34.387707367435354,
+                "nmae": 0.21902998323207232,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 34.387707367435354
+          },
+          "2": {
+            "macro_bearing_mae": 102.52508596606066,
+            "macro_bearing_nmae": 0.19271632700387342,
+            "median_bearing_mae": 102.52508596606066,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 102.52508596606066,
+                "nmae": 0.19271632700387342,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 102.52508596606066
+          },
+          "3": {
+            "macro_bearing_mae": 2056.890879372506,
+            "macro_bearing_nmae": 5.559164538844611,
+            "median_bearing_mae": 2056.890879372506,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 2056.890879372506,
+                "nmae": 5.559164538844611,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 2056.890879372506
+          }
+        },
+        "snapshot_mae": 775.1277258297222
+      }
+    }
+  ],
+  "quantile_comparison_selected": {
+    "candidate_id": "hgbq-horizontal-age0-candidate1",
+    "estimator_family": "hist_gradient_boosting_quantile",
+    "feature_set": "horizontal",
+    "include_age": false,
+    "parameters": {
+      "l2_regularization": 1.0,
+      "learning_rate": 0.05,
+      "max_iter": 300,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 40,
+      "quantiles": [
+        0.1,
+        0.5,
+        0.9
+      ]
+    },
+    "validation_interval_metrics": {
+      "macro_bearing_coverage": 0.09476647554146432,
+      "mean_width_minutes": 410.4841356770544,
+      "per_bearing": {
+        "Bearing1_3": {
+          "coverage": 0.12025316455696203,
+          "mean_width_minutes": 49.18746739566466,
+          "snapshots": 158
+        },
+        "Bearing2_3": {
+          "coverage": 0.16135084427767354,
+          "mean_width_minutes": 100.34551903783674,
+          "snapshots": 533
+        },
+        "Bearing3_3": {
+          "coverage": 0.0026954177897574125,
+          "mean_width_minutes": 1009.9147455346356,
+          "snapshots": 371
+        }
+      },
+      "per_condition": {
+        "1": {
+          "macro_bearing_coverage": 0.12025316455696203,
+          "mean_width_minutes": 49.18746739566466,
+          "per_bearing": {
+            "Bearing1_3": {
+              "coverage": 0.12025316455696203,
+              "mean_width_minutes": 49.18746739566466,
+              "snapshots": 158
+            }
+          },
+          "snapshot_coverage": 0.12025316455696203
+        },
+        "2": {
+          "macro_bearing_coverage": 0.16135084427767354,
+          "mean_width_minutes": 100.34551903783674,
+          "per_bearing": {
+            "Bearing2_3": {
+              "coverage": 0.16135084427767354,
+              "mean_width_minutes": 100.34551903783674,
+              "snapshots": 533
+            }
+          },
+          "snapshot_coverage": 0.16135084427767354
+        },
+        "3": {
+          "macro_bearing_coverage": 0.0026954177897574125,
+          "mean_width_minutes": 1009.9147455346356,
+          "per_bearing": {
+            "Bearing3_3": {
+              "coverage": 0.0026954177897574125,
+              "mean_width_minutes": 1009.9147455346356,
+              "snapshots": 371
+            }
+          },
+          "snapshot_coverage": 0.0026954177897574125
+        }
+      },
+      "snapshot_coverage": 0.09981167608286252
+    },
+    "validation_point_metrics": {
+      "macro_bearing_mae": 574.8655769880775,
+      "macro_bearing_nmae": 1.5708230335343802,
+      "median_bearing_mae": 104.92411900274485,
+      "per_bearing": {
+        "Bearing1_3": {
+          "mae_minutes": 37.56753039647218,
+          "nmae": 0.23928363309854891,
+          "observed_lifetime_minutes": 157.0,
+          "snapshots": 158
+        },
+        "Bearing2_3": {
+          "mae_minutes": 104.92411900274485,
+          "nmae": 0.19722578759914444,
+          "observed_lifetime_minutes": 532.0,
+          "snapshots": 533
+        },
+        "Bearing3_3": {
+          "mae_minutes": 1582.1050815650153,
+          "nmae": 4.275959679905447,
+          "observed_lifetime_minutes": 370.0,
+          "snapshots": 371
+        }
+      },
+      "per_condition": {
+        "1": {
+          "macro_bearing_mae": 37.56753039647218,
+          "macro_bearing_nmae": 0.23928363309854891,
+          "median_bearing_mae": 37.56753039647218,
+          "per_bearing": {
+            "Bearing1_3": {
+              "mae_minutes": 37.56753039647218,
+              "nmae": 0.23928363309854891,
+              "observed_lifetime_minutes": 157.0,
+              "snapshots": 158
+            }
+          },
+          "snapshot_mae": 37.56753039647218
+        },
+        "2": {
+          "macro_bearing_mae": 104.92411900274485,
+          "macro_bearing_nmae": 0.19722578759914444,
+          "median_bearing_mae": 104.92411900274485,
+          "per_bearing": {
+            "Bearing2_3": {
+              "mae_minutes": 104.92411900274485,
+              "nmae": 0.19722578759914444,
+              "observed_lifetime_minutes": 532.0,
+              "snapshots": 533
+            }
+          },
+          "snapshot_mae": 104.92411900274485
+        },
+        "3": {
+          "macro_bearing_mae": 1582.1050815650153,
+          "macro_bearing_nmae": 4.275959679905447,
+          "median_bearing_mae": 1582.1050815650153,
+          "per_bearing": {
+            "Bearing3_3": {
+              "mae_minutes": 1582.1050815650153,
+              "nmae": 4.275959679905447,
+              "observed_lifetime_minutes": 370.0,
+              "snapshots": 371
+            }
+          },
+          "snapshot_mae": 1582.1050815650153
+        }
+      },
+      "snapshot_mae": 610.9427594084054
+    }
+  },
+  "ridge_baseline_selected": {
+    "candidate_id": "ridge-vertical-age1-alpha100",
+    "estimator_family": "ridge",
+    "feature_set": "vertical",
+    "include_age": true,
+    "parameters": {
+      "alpha": 100.0
+    },
+    "validation_interval_metrics": {},
+    "validation_point_metrics": {
+      "macro_bearing_mae": 317.88302880477744,
+      "macro_bearing_nmae": 1.3081149246826913,
+      "median_bearing_mae": 395.21480067125304,
+      "per_bearing": {
+        "Bearing1_3": {
+          "mae_minutes": 402.364766167406,
+          "nmae": 2.562832905524879,
+          "observed_lifetime_minutes": 157.0,
+          "snapshots": 158
+        },
+        "Bearing2_3": {
+          "mae_minutes": 156.06951957567313,
+          "nmae": 0.2933637586008893,
+          "observed_lifetime_minutes": 532.0,
+          "snapshots": 533
+        },
+        "Bearing3_3": {
+          "mae_minutes": 395.21480067125304,
+          "nmae": 1.0681481099223056,
+          "observed_lifetime_minutes": 370.0,
+          "snapshots": 371
+        }
+      },
+      "per_condition": {
+        "1": {
+          "macro_bearing_mae": 402.364766167406,
+          "macro_bearing_nmae": 2.562832905524879,
+          "median_bearing_mae": 402.364766167406,
+          "per_bearing": {
+            "Bearing1_3": {
+              "mae_minutes": 402.364766167406,
+              "nmae": 2.562832905524879,
+              "observed_lifetime_minutes": 157.0,
+              "snapshots": 158
+            }
+          },
+          "snapshot_mae": 402.364766167406
+        },
+        "2": {
+          "macro_bearing_mae": 156.06951957567313,
+          "macro_bearing_nmae": 0.2933637586008893,
+          "median_bearing_mae": 156.06951957567313,
+          "per_bearing": {
+            "Bearing2_3": {
+              "mae_minutes": 156.06951957567313,
+              "nmae": 0.2933637586008893,
+              "observed_lifetime_minutes": 532.0,
+              "snapshots": 533
+            }
+          },
+          "snapshot_mae": 156.06951957567313
+        },
+        "3": {
+          "macro_bearing_mae": 395.21480067125304,
+          "macro_bearing_nmae": 1.0681481099223056,
+          "median_bearing_mae": 395.21480067125304,
+          "per_bearing": {
+            "Bearing3_3": {
+              "mae_minutes": 395.21480067125304,
+              "nmae": 1.0681481099223056,
+              "observed_lifetime_minutes": 370.0,
+              "snapshots": 371
+            }
+          },
+          "snapshot_mae": 395.21480067125304
+        }
+      },
+      "snapshot_mae": 276.2555348750648
+    }
+  },
+  "ridge_candidates": [
+    {
+      "candidate_id": "ridge-vertical-age1-alpha100",
+      "estimator_family": "ridge",
+      "feature_set": "vertical",
+      "include_age": true,
+      "parameters": {
+        "alpha": 100.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 317.88302880477744,
+        "macro_bearing_nmae": 1.3081149246826913,
+        "median_bearing_mae": 395.21480067125304,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 402.364766167406,
+            "nmae": 2.562832905524879,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 156.06951957567313,
+            "nmae": 0.2933637586008893,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 395.21480067125304,
+            "nmae": 1.0681481099223056,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 402.364766167406,
+            "macro_bearing_nmae": 2.562832905524879,
+            "median_bearing_mae": 402.364766167406,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 402.364766167406,
+                "nmae": 2.562832905524879,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 402.364766167406
+          },
+          "2": {
+            "macro_bearing_mae": 156.06951957567313,
+            "macro_bearing_nmae": 0.2933637586008893,
+            "median_bearing_mae": 156.06951957567313,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 156.06951957567313,
+                "nmae": 0.2933637586008893,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 156.06951957567313
+          },
+          "3": {
+            "macro_bearing_mae": 395.21480067125304,
+            "macro_bearing_nmae": 1.0681481099223056,
+            "median_bearing_mae": 395.21480067125304,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 395.21480067125304,
+                "nmae": 1.0681481099223056,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 395.21480067125304
+          }
+        },
+        "snapshot_mae": 276.2555348750648
+      }
+    },
+    {
+      "candidate_id": "ridge-vertical-age0-alpha100",
+      "estimator_family": "ridge",
+      "feature_set": "vertical",
+      "include_age": false,
+      "parameters": {
+        "alpha": 100.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 320.1625459856068,
+        "macro_bearing_nmae": 1.3179783239401095,
+        "median_bearing_mae": 398.2509980943995,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 405.5357774594174,
+            "nmae": 2.5830304296778177,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 156.70086240300353,
+            "nmae": 0.29455049323872845,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 398.2509980943995,
+            "nmae": 1.0763540489037824,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 405.5357774594174,
+            "macro_bearing_nmae": 2.5830304296778177,
+            "median_bearing_mae": 405.5357774594174,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 405.5357774594174,
+                "nmae": 2.5830304296778177,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 405.5357774594174
+          },
+          "2": {
+            "macro_bearing_mae": 156.70086240300353,
+            "macro_bearing_nmae": 0.29455049323872845,
+            "median_bearing_mae": 156.70086240300353,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 156.70086240300353,
+                "nmae": 0.29455049323872845,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 156.70086240300353
+          },
+          "3": {
+            "macro_bearing_mae": 398.2509980943995,
+            "macro_bearing_nmae": 1.0763540489037824,
+            "median_bearing_mae": 398.2509980943995,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 398.2509980943995,
+                "nmae": 1.0763540489037824,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 398.2509980943995
+          }
+        },
+        "snapshot_mae": 278.1048331378635
+      }
+    },
+    {
+      "candidate_id": "ridge-vertical-age1-alpha10",
+      "estimator_family": "ridge",
+      "feature_set": "vertical",
+      "include_age": true,
+      "parameters": {
+        "alpha": 10.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 329.9595347132492,
+        "macro_bearing_nmae": 1.2544837388498509,
+        "median_bearing_mae": 323.1833243209751,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 323.1833243209751,
+            "nmae": 2.0584925115985673,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 117.76430482120361,
+            "nmae": 0.22136147522782634,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 548.9309749975688,
+            "nmae": 1.483597229723159,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 323.1833243209751,
+            "macro_bearing_nmae": 2.0584925115985673,
+            "median_bearing_mae": 323.1833243209751,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 323.1833243209751,
+                "nmae": 2.0584925115985673,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 323.1833243209751
+          },
+          "2": {
+            "macro_bearing_mae": 117.76430482120361,
+            "macro_bearing_nmae": 0.22136147522782634,
+            "median_bearing_mae": 117.76430482120361,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 117.76430482120361,
+                "nmae": 0.22136147522782634,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 117.76430482120361
+          },
+          "3": {
+            "macro_bearing_mae": 548.9309749975688,
+            "macro_bearing_nmae": 1.483597229723159,
+            "median_bearing_mae": 548.9309749975688,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 548.9309749975688,
+                "nmae": 1.483597229723159,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 548.9309749975688
+          }
+        },
+        "snapshot_mae": 298.94984127731976
+      }
+    },
+    {
+      "candidate_id": "ridge-vertical-age0-alpha10",
+      "estimator_family": "ridge",
+      "feature_set": "vertical",
+      "include_age": false,
+      "parameters": {
+        "alpha": 10.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 333.3949141011921,
+        "macro_bearing_nmae": 1.2684303668871058,
+        "median_bearing_mae": 327.0342451957585,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 327.0342451957585,
+            "nmae": 2.0830206700366785,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 117.92810430373574,
+            "nmae": 0.22166936899198447,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 555.222392804082,
+            "nmae": 1.5006010616326542,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 327.0342451957585,
+            "macro_bearing_nmae": 2.0830206700366785,
+            "median_bearing_mae": 327.0342451957585,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 327.0342451957585,
+                "nmae": 2.0830206700366785,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 327.0342451957585
+          },
+          "2": {
+            "macro_bearing_mae": 117.92810430373574,
+            "macro_bearing_nmae": 0.22166936899198447,
+            "median_bearing_mae": 117.92810430373574,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 117.92810430373574,
+                "nmae": 0.22166936899198447,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 117.92810430373574
+          },
+          "3": {
+            "macro_bearing_mae": 555.222392804082,
+            "macro_bearing_nmae": 1.5006010616326542,
+            "median_bearing_mae": 555.222392804082,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 555.222392804082,
+                "nmae": 1.5006010616326542,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 555.222392804082
+          }
+        },
+        "snapshot_mae": 301.80282303685067
+      }
+    },
+    {
+      "candidate_id": "ridge-dual-age1-alpha100",
+      "estimator_family": "ridge",
+      "feature_set": "dual",
+      "include_age": true,
+      "parameters": {
+        "alpha": 100.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 338.71730131601265,
+        "macro_bearing_nmae": 1.396998497593372,
+        "median_bearing_mae": 426.03822997653685,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 426.03822997653685,
+            "nmae": 2.7136192992136103,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 142.80089266177515,
+            "nmae": 0.2684227305672465,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 447.3127813097259,
+            "nmae": 1.208953462999259,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 426.03822997653685,
+            "macro_bearing_nmae": 2.7136192992136103,
+            "median_bearing_mae": 426.03822997653685,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 426.03822997653685,
+                "nmae": 2.7136192992136103,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 426.03822997653685
+          },
+          "2": {
+            "macro_bearing_mae": 142.80089266177515,
+            "macro_bearing_nmae": 0.2684227305672465,
+            "median_bearing_mae": 142.80089266177515,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 142.80089266177515,
+                "nmae": 0.2684227305672465,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 142.80089266177515
+          },
+          "3": {
+            "macro_bearing_mae": 447.3127813097259,
+            "macro_bearing_nmae": 1.208953462999259,
+            "median_bearing_mae": 447.3127813097259,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 447.3127813097259,
+                "nmae": 1.208953462999259,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 447.3127813097259
+          }
+        },
+        "snapshot_mae": 291.31822786339666
+      }
+    },
+    {
+      "candidate_id": "ridge-dual-age0-alpha100",
+      "estimator_family": "ridge",
+      "feature_set": "dual",
+      "include_age": false,
+      "parameters": {
+        "alpha": 100.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 340.5560567334046,
+        "macro_bearing_nmae": 1.4046884632597163,
+        "median_bearing_mae": 428.44840825920926,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 428.44840825920926,
+            "nmae": 2.728970753243371,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 143.6227475118011,
+            "nmae": 0.2699675705109043,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 449.5970144292035,
+            "nmae": 1.2151270660248743,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 428.44840825920926,
+            "macro_bearing_nmae": 2.728970753243371,
+            "median_bearing_mae": 428.44840825920926,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 428.44840825920926,
+                "nmae": 2.728970753243371,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 428.44840825920926
+          },
+          "2": {
+            "macro_bearing_mae": 143.6227475118011,
+            "macro_bearing_nmae": 0.2699675705109043,
+            "median_bearing_mae": 143.6227475118011,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 143.6227475118011,
+                "nmae": 0.2699675705109043,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 143.6227475118011
+          },
+          "3": {
+            "macro_bearing_mae": 449.5970144292035,
+            "macro_bearing_nmae": 1.2151270660248743,
+            "median_bearing_mae": 449.5970144292035,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 449.5970144292035,
+                "nmae": 1.2151270660248743,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 449.5970144292035
+          }
+        },
+        "snapshot_mae": 292.8872554444252
+      }
+    },
+    {
+      "candidate_id": "ridge-horizontal-age1-alpha100",
+      "estimator_family": "ridge",
+      "feature_set": "horizontal",
+      "include_age": true,
+      "parameters": {
+        "alpha": 100.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 346.9459375533083,
+        "macro_bearing_nmae": 1.431596939869831,
+        "median_bearing_mae": 410.58348680319153,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 445.55424269222357,
+            "nmae": 2.837925112689322,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 184.70008316450972,
+            "nmae": 0.34718060745208595,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 410.58348680319153,
+            "nmae": 1.1096850994680851,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 445.55424269222357,
+            "macro_bearing_nmae": 2.837925112689322,
+            "median_bearing_mae": 445.55424269222357,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 445.55424269222357,
+                "nmae": 2.837925112689322,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 445.55424269222357
+          },
+          "2": {
+            "macro_bearing_mae": 184.70008316450972,
+            "macro_bearing_nmae": 0.34718060745208595,
+            "median_bearing_mae": 184.70008316450972,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 184.70008316450972,
+                "nmae": 0.34718060745208595,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 184.70008316450972
+          },
+          "3": {
+            "macro_bearing_mae": 410.58348680319153,
+            "macro_bearing_nmae": 1.1096850994680851,
+            "median_bearing_mae": 410.58348680319153,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 410.58348680319153,
+                "nmae": 1.1096850994680851,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 410.58348680319153
+          }
+        },
+        "snapshot_mae": 302.41919800003683
+      }
+    },
+    {
+      "candidate_id": "ridge-horizontal-age0-alpha100",
+      "estimator_family": "ridge",
+      "feature_set": "horizontal",
+      "include_age": false,
+      "parameters": {
+        "alpha": 100.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 349.1804661180019,
+        "macro_bearing_nmae": 1.4409826598866582,
+        "median_bearing_mae": 413.0783103588145,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 448.56181645840724,
+            "nmae": 2.85708163349304,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 185.9012715367839,
+            "nmae": 0.34943848033230057,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 413.0783103588145,
+            "nmae": 1.1164278658346338,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 448.56181645840724,
+            "macro_bearing_nmae": 2.85708163349304,
+            "median_bearing_mae": 448.56181645840724,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 448.56181645840724,
+                "nmae": 2.85708163349304,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 448.56181645840724
+          },
+          "2": {
+            "macro_bearing_mae": 185.9012715367839,
+            "macro_bearing_nmae": 0.34943848033230057,
+            "median_bearing_mae": 185.9012715367839,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 185.9012715367839,
+                "nmae": 0.34943848033230057,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 185.9012715367839
+          },
+          "3": {
+            "macro_bearing_mae": 413.0783103588145,
+            "macro_bearing_nmae": 1.1164278658346338,
+            "median_bearing_mae": 413.0783103588145,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 413.0783103588145,
+                "nmae": 1.1164278658346338,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 413.0783103588145
+          }
+        },
+        "snapshot_mae": 304.34105261078565
+      }
+    },
+    {
+      "candidate_id": "ridge-dual-age0-alpha10",
+      "estimator_family": "ridge",
+      "feature_set": "dual",
+      "include_age": false,
+      "parameters": {
+        "alpha": 10.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 377.03006784504646,
+        "macro_bearing_nmae": 1.450371935706027,
+        "median_bearing_mae": 381.1587213384047,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 381.1587213384047,
+            "nmae": 2.4277625562955714,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 125.74502862197546,
+            "nmae": 0.23636283575559297,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 624.1864535747592,
+            "nmae": 1.6869904150669166,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 381.1587213384047,
+            "macro_bearing_nmae": 2.4277625562955714,
+            "median_bearing_mae": 381.1587213384047,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 381.1587213384047,
+                "nmae": 2.4277625562955714,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 381.1587213384047
+          },
+          "2": {
+            "macro_bearing_mae": 125.74502862197546,
+            "macro_bearing_nmae": 0.23636283575559297,
+            "median_bearing_mae": 125.74502862197546,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 125.74502862197546,
+                "nmae": 0.23636283575559297,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 125.74502862197546
+          },
+          "3": {
+            "macro_bearing_mae": 624.1864535747592,
+            "macro_bearing_nmae": 1.6869904150669166,
+            "median_bearing_mae": 624.1864535747592,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 624.1864535747592,
+                "nmae": 1.6869904150669166,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 624.1864535747592
+          }
+        },
+        "snapshot_mae": 337.87038842110786
+      }
+    },
+    {
+      "candidate_id": "ridge-dual-age1-alpha10",
+      "estimator_family": "ridge",
+      "feature_set": "dual",
+      "include_age": true,
+      "parameters": {
+        "alpha": 10.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 383.026185642595,
+        "macro_bearing_nmae": 1.4763993535387587,
+        "median_bearing_mae": 389.3290891237545,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 389.3290891237545,
+            "nmae": 2.4798031154379268,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 126.34454236319796,
+            "nmae": 0.2374897412842067,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 633.4049254408327,
+            "nmae": 1.7119052038941425,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 389.3290891237545,
+            "macro_bearing_nmae": 2.4798031154379268,
+            "median_bearing_mae": 389.3290891237545,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 389.3290891237545,
+                "nmae": 2.4798031154379268,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 389.3290891237545
+          },
+          "2": {
+            "macro_bearing_mae": 126.34454236319796,
+            "macro_bearing_nmae": 0.2374897412842067,
+            "median_bearing_mae": 126.34454236319796,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 126.34454236319796,
+                "nmae": 0.2374897412842067,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 126.34454236319796
+          },
+          "3": {
+            "macro_bearing_mae": 633.4049254408327,
+            "macro_bearing_nmae": 1.7119052038941425,
+            "median_bearing_mae": 633.4049254408327,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 633.4049254408327,
+                "nmae": 1.7119052038941425,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 633.4049254408327
+          }
+        },
+        "snapshot_mae": 342.60721704301943
+      }
+    },
+    {
+      "candidate_id": "ridge-horizontal-age1-alpha10",
+      "estimator_family": "ridge",
+      "feature_set": "horizontal",
+      "include_age": true,
+      "parameters": {
+        "alpha": 10.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 391.2357857562591,
+        "macro_bearing_nmae": 1.5583314845824214,
+        "median_bearing_mae": 440.6094024351221,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 440.6094024351221,
+            "nmae": 2.806429314873389,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 137.03549404673487,
+            "nmae": 0.2575855151254415,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 596.0624607869205,
+            "nmae": 1.6109796237484337,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 440.6094024351221,
+            "macro_bearing_nmae": 2.806429314873389,
+            "median_bearing_mae": 440.6094024351221,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 440.6094024351221,
+                "nmae": 2.806429314873389,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 440.6094024351221
+          },
+          "2": {
+            "macro_bearing_mae": 137.03549404673487,
+            "macro_bearing_nmae": 0.2575855151254415,
+            "median_bearing_mae": 137.03549404673487,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 137.03549404673487,
+                "nmae": 0.2575855151254415,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 137.03549404673487
+          },
+          "3": {
+            "macro_bearing_mae": 596.0624607869205,
+            "macro_bearing_nmae": 1.6109796237484337,
+            "median_bearing_mae": 596.0624607869205,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 596.0624607869205,
+                "nmae": 1.6109796237484337,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 596.0624607869205
+          }
+        },
+        "snapshot_mae": 342.5568520372942
+      }
+    },
+    {
+      "candidate_id": "ridge-horizontal-age0-alpha10",
+      "estimator_family": "ridge",
+      "feature_set": "horizontal",
+      "include_age": false,
+      "parameters": {
+        "alpha": 10.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 391.43068812538223,
+        "macro_bearing_nmae": 1.5591723513203217,
+        "median_bearing_mae": 440.8835952423861,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 440.8835952423861,
+            "nmae": 2.808175765875071,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 137.11213847119248,
+            "nmae": 0.25772958359246706,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 596.2963306625682,
+            "nmae": 1.6116117044934275,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 440.8835952423861,
+            "macro_bearing_nmae": 2.808175765875071,
+            "median_bearing_mae": 440.8835952423861,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 440.8835952423861,
+                "nmae": 2.808175765875071,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 440.8835952423861
+          },
+          "2": {
+            "macro_bearing_mae": 137.11213847119248,
+            "macro_bearing_nmae": 0.25772958359246706,
+            "median_bearing_mae": 137.11213847119248,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 137.11213847119248,
+                "nmae": 0.25772958359246706,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 137.11213847119248
+          },
+          "3": {
+            "macro_bearing_mae": 596.2963306625682,
+            "macro_bearing_nmae": 1.6116117044934275,
+            "median_bearing_mae": 596.2963306625682,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 596.2963306625682,
+                "nmae": 1.6116117044934275,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 596.2963306625682
+          }
+        },
+        "snapshot_mae": 342.71781217444016
+      }
+    },
+    {
+      "candidate_id": "ridge-vertical-age0-alpha1",
+      "estimator_family": "ridge",
+      "feature_set": "vertical",
+      "include_age": false,
+      "parameters": {
+        "alpha": 1.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 396.93566917071365,
+        "macro_bearing_nmae": 1.270335299682789,
+        "median_bearing_mae": 198.71262125902533,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 198.71262125902533,
+            "nmae": 1.265685485726276,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 165.2675514094882,
+            "nmae": 0.3106532921230981,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 826.8268348436274,
+            "nmae": 2.234667121198993,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 198.71262125902533,
+            "macro_bearing_nmae": 1.265685485726276,
+            "median_bearing_mae": 198.71262125902533,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 198.71262125902533,
+                "nmae": 1.265685485726276,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 198.71262125902533
+          },
+          "2": {
+            "macro_bearing_mae": 165.2675514094882,
+            "macro_bearing_nmae": 0.3106532921230981,
+            "median_bearing_mae": 165.2675514094882,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 165.2675514094882,
+                "nmae": 0.3106532921230981,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 165.2675514094882
+          },
+          "3": {
+            "macro_bearing_mae": 826.8268348436274,
+            "macro_bearing_nmae": 2.234667121198993,
+            "median_bearing_mae": 826.8268348436274,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 826.8268348436274,
+                "nmae": 2.234667121198993,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 826.8268348436274
+          }
+        },
+        "snapshot_mae": 401.35306477134554
+      }
+    },
+    {
+      "candidate_id": "ridge-horizontal-age0-alpha1",
+      "estimator_family": "ridge",
+      "feature_set": "horizontal",
+      "include_age": false,
+      "parameters": {
+        "alpha": 1.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 446.18727266595675,
+        "macro_bearing_nmae": 1.4889532072927019,
+        "median_bearing_mae": 248.8170358443087,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 248.8170358443087,
+            "nmae": 1.5848218843586541,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 76.81429538497416,
+            "nmae": 0.1443877732800266,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1012.9304867685875,
+            "nmae": 2.7376499642394254,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 248.8170358443087,
+            "macro_bearing_nmae": 1.5848218843586541,
+            "median_bearing_mae": 248.8170358443087,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 248.8170358443087,
+                "nmae": 1.5848218843586541,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 248.8170358443087
+          },
+          "2": {
+            "macro_bearing_mae": 76.81429538497416,
+            "macro_bearing_nmae": 0.1443877732800266,
+            "median_bearing_mae": 76.81429538497416,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 76.81429538497416,
+                "nmae": 0.1443877732800266,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 76.81429538497416
+          },
+          "3": {
+            "macro_bearing_mae": 1012.9304867685875,
+            "macro_bearing_nmae": 2.7376499642394254,
+            "median_bearing_mae": 1012.9304867685875,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1012.9304867685875,
+                "nmae": 2.7376499642394254,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1012.9304867685875
+          }
+        },
+        "snapshot_mae": 429.427798205968
+      }
+    },
+    {
+      "candidate_id": "ridge-vertical-age0-alpha0.1",
+      "estimator_family": "ridge",
+      "feature_set": "vertical",
+      "include_age": false,
+      "parameters": {
+        "alpha": 0.1
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 451.5158644090445,
+        "macro_bearing_nmae": 1.2865335897426626,
+        "median_bearing_mae": 141.55995686509792,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 85.95292620930164,
+            "nmae": 0.5474708675751697,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 141.55995686509792,
+            "nmae": 0.26609014448326673,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1127.034710152734,
+            "nmae": 3.0460397571695514,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 85.95292620930164,
+            "macro_bearing_nmae": 0.5474708675751697,
+            "median_bearing_mae": 85.95292620930164,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 85.95292620930164,
+                "nmae": 0.5474708675751697,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 85.95292620930164
+          },
+          "2": {
+            "macro_bearing_mae": 141.55995686509792,
+            "macro_bearing_nmae": 0.26609014448326673,
+            "median_bearing_mae": 141.55995686509792,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 141.55995686509792,
+                "nmae": 0.26609014448326673,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 141.55995686509792
+          },
+          "3": {
+            "macro_bearing_mae": 1127.034710152734,
+            "macro_bearing_nmae": 3.0460397571695514,
+            "median_bearing_mae": 1127.034710152734,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1127.034710152734,
+                "nmae": 3.0460397571695514,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1127.034710152734
+          }
+        },
+        "snapshot_mae": 477.55357515709153
+      }
+    },
+    {
+      "candidate_id": "ridge-dual-age0-alpha1",
+      "estimator_family": "ridge",
+      "feature_set": "dual",
+      "include_age": false,
+      "parameters": {
+        "alpha": 1.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 469.8999285880252,
+        "macro_bearing_nmae": 1.5838610757840232,
+        "median_bearing_mae": 297.86841755599573,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 297.86841755599573,
+            "nmae": 1.8972510672356415,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 183.00954005790643,
+            "nmae": 0.3440028948456888,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 928.8218281501735,
+            "nmae": 2.510329265270739,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 297.86841755599573,
+            "macro_bearing_nmae": 1.8972510672356415,
+            "median_bearing_mae": 297.86841755599573,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 297.86841755599573,
+                "nmae": 1.8972510672356415,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 297.86841755599573
+          },
+          "2": {
+            "macro_bearing_mae": 183.00954005790643,
+            "macro_bearing_nmae": 0.3440028948456888,
+            "median_bearing_mae": 183.00954005790643,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 183.00954005790643,
+                "nmae": 0.3440028948456888,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 183.00954005790643
+          },
+          "3": {
+            "macro_bearing_mae": 928.8218281501735,
+            "macro_bearing_nmae": 2.510329265270739,
+            "median_bearing_mae": 928.8218281501735,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 928.8218281501735,
+                "nmae": 2.510329265270739,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 928.8218281501735
+          }
+        },
+        "snapshot_mae": 460.6404831152785
+      }
+    },
+    {
+      "candidate_id": "ridge-vertical-age1-alpha1",
+      "estimator_family": "ridge",
+      "feature_set": "vertical",
+      "include_age": true,
+      "parameters": {
+        "alpha": 1.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 477.64861863793993,
+        "macro_bearing_nmae": 1.5367105827326994,
+        "median_bearing_mae": 240.05112355885146,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 240.05112355885146,
+            "nmae": 1.5289880481455507,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 173.62760305246604,
+            "nmae": 0.32636767491065044,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1019.2671293025021,
+            "nmae": 2.7547760251418976,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 240.05112355885146,
+            "macro_bearing_nmae": 1.5289880481455507,
+            "median_bearing_mae": 240.05112355885146,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 240.05112355885146,
+                "nmae": 1.5289880481455507,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 240.05112355885146
+          },
+          "2": {
+            "macro_bearing_mae": 173.62760305246604,
+            "macro_bearing_nmae": 0.32636767491065044,
+            "median_bearing_mae": 173.62760305246604,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 173.62760305246604,
+                "nmae": 0.32636767491065044,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 173.62760305246604
+          },
+          "3": {
+            "macro_bearing_mae": 1019.2671293025021,
+            "macro_bearing_nmae": 2.7547760251418976,
+            "median_bearing_mae": 1019.2671293025021,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1019.2671293025021,
+                "nmae": 2.7547760251418976,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1019.2671293025021
+          }
+        },
+        "snapshot_mae": 478.9262664034757
+      }
+    },
+    {
+      "candidate_id": "ridge-horizontal-age1-alpha1",
+      "estimator_family": "ridge",
+      "feature_set": "horizontal",
+      "include_age": true,
+      "parameters": {
+        "alpha": 1.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 504.8366709534999,
+        "macro_bearing_nmae": 1.7526682039658885,
+        "median_bearing_mae": 331.71957108244635,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 331.71957108244635,
+            "nmae": 2.112863510079276,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 62.68481817279381,
+            "nmae": 0.1178286055879583,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1120.1056236052596,
+            "nmae": 3.027312496230431,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 331.71957108244635,
+            "macro_bearing_nmae": 2.112863510079276,
+            "median_bearing_mae": 331.71957108244635,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 331.71957108244635,
+                "nmae": 2.112863510079276,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 331.71957108244635
+          },
+          "2": {
+            "macro_bearing_mae": 62.68481817279381,
+            "macro_bearing_nmae": 0.1178286055879583,
+            "median_bearing_mae": 62.68481817279381,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 62.68481817279381,
+                "nmae": 0.1178286055879583,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 62.68481817279381
+          },
+          "3": {
+            "macro_bearing_mae": 1120.1056236052596,
+            "macro_bearing_nmae": 3.027312496230431,
+            "median_bearing_mae": 1120.1056236052596,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1120.1056236052596,
+                "nmae": 3.027312496230431,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1120.1056236052596
+          }
+        },
+        "snapshot_mae": 472.1110044017672
+      }
+    },
+    {
+      "candidate_id": "ridge-dual-age1-alpha1",
+      "estimator_family": "ridge",
+      "feature_set": "dual",
+      "include_age": true,
+      "parameters": {
+        "alpha": 1.0
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 547.3744297341492,
+        "macro_bearing_nmae": 1.9176651399082811,
+        "median_bearing_mae": 397.8175819282425,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 397.8175819282425,
+            "nmae": 2.533869948587532,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 174.80233661239782,
+            "nmae": 0.3285758206999959,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1069.5033706618071,
+            "nmae": 2.8905496504373165,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 397.8175819282425,
+            "macro_bearing_nmae": 2.533869948587532,
+            "median_bearing_mae": 397.8175819282425,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 397.8175819282425,
+                "nmae": 2.533869948587532,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 397.8175819282425
+          },
+          "2": {
+            "macro_bearing_mae": 174.80233661239782,
+            "macro_bearing_nmae": 0.3285758206999959,
+            "median_bearing_mae": 174.80233661239782,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 174.80233661239782,
+                "nmae": 0.3285758206999959,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 174.80233661239782
+          },
+          "3": {
+            "macro_bearing_mae": 1069.5033706618071,
+            "macro_bearing_nmae": 2.8905496504373165,
+            "median_bearing_mae": 1069.5033706618071,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1069.5033706618071,
+                "nmae": 2.8905496504373165,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1069.5033706618071
+          }
+        },
+        "snapshot_mae": 520.5372635354057
+      }
+    },
+    {
+      "candidate_id": "ridge-horizontal-age0-alpha0.1",
+      "estimator_family": "ridge",
+      "feature_set": "horizontal",
+      "include_age": false,
+      "parameters": {
+        "alpha": 0.1
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 558.1560486309988,
+        "macro_bearing_nmae": 1.5540283395126442,
+        "median_bearing_mae": 155.32485810476808,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 72.08841634159396,
+            "nmae": 0.4591618875260762,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 155.32485810476808,
+            "nmae": 0.291964018993925,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1447.0548714466345,
+            "nmae": 3.910959112017931,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 72.08841634159396,
+            "macro_bearing_nmae": 0.4591618875260762,
+            "median_bearing_mae": 72.08841634159396,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 72.08841634159396,
+                "nmae": 0.4591618875260762,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 72.08841634159396
+          },
+          "2": {
+            "macro_bearing_mae": 155.32485810476808,
+            "macro_bearing_nmae": 0.291964018993925,
+            "median_bearing_mae": 155.32485810476808,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 155.32485810476808,
+                "nmae": 0.291964018993925,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 155.32485810476808
+          },
+          "3": {
+            "macro_bearing_mae": 1447.0548714466345,
+            "macro_bearing_nmae": 3.910959112017931,
+            "median_bearing_mae": 1447.0548714466345,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1447.0548714466345,
+                "nmae": 3.910959112017931,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1447.0548714466345
+          }
+        },
+        "snapshot_mae": 594.1953638969063
+      }
+    },
+    {
+      "candidate_id": "ridge-dual-age0-alpha0.1",
+      "estimator_family": "ridge",
+      "feature_set": "dual",
+      "include_age": false,
+      "parameters": {
+        "alpha": 0.1
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 580.7564049312197,
+        "macro_bearing_nmae": 1.6516792620893466,
+        "median_bearing_mae": 168.02492377846565,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 104.85849445134896,
+            "nmae": 0.6678884996901208,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 168.02492377846565,
+            "nmae": 0.3158363228918527,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1469.3857965638445,
+            "nmae": 3.9713129636860662,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 104.85849445134896,
+            "macro_bearing_nmae": 0.6678884996901208,
+            "median_bearing_mae": 104.85849445134896,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 104.85849445134896,
+                "nmae": 0.6678884996901208,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 104.85849445134896
+          },
+          "2": {
+            "macro_bearing_mae": 168.02492377846565,
+            "macro_bearing_nmae": 0.3158363228918527,
+            "median_bearing_mae": 168.02492377846565,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 168.02492377846565,
+                "nmae": 0.3158363228918527,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 168.02492377846565
+          },
+          "3": {
+            "macro_bearing_mae": 1469.3857965638445,
+            "macro_bearing_nmae": 3.9713129636860662,
+            "median_bearing_mae": 1469.3857965638445,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1469.3857965638445,
+                "nmae": 3.9713129636860662,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1469.3857965638445
+          }
+        },
+        "snapshot_mae": 613.2458164052935
+      }
+    },
+    {
+      "candidate_id": "ridge-vertical-age1-alpha0.1",
+      "estimator_family": "ridge",
+      "feature_set": "vertical",
+      "include_age": true,
+      "parameters": {
+        "alpha": 0.1
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 672.6459477468366,
+        "macro_bearing_nmae": 1.8678463089422588,
+        "median_bearing_mae": 143.12487398107388,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 72.93843937306117,
+            "nmae": 0.4645760469621731,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 143.12487398107388,
+            "nmae": 0.26903171800953735,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1801.8745298863746,
+            "nmae": 4.8699311618550665,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 72.93843937306117,
+            "macro_bearing_nmae": 0.4645760469621731,
+            "median_bearing_mae": 72.93843937306117,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 72.93843937306117,
+                "nmae": 0.4645760469621731,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 72.93843937306117
+          },
+          "2": {
+            "macro_bearing_mae": 143.12487398107388,
+            "macro_bearing_nmae": 0.26903171800953735,
+            "median_bearing_mae": 143.12487398107388,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 143.12487398107388,
+                "nmae": 0.26903171800953735,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 143.12487398107388
+          },
+          "3": {
+            "macro_bearing_mae": 1801.8745298863746,
+            "macro_bearing_nmae": 4.8699311618550665,
+            "median_bearing_mae": 1801.8745298863746,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1801.8745298863746,
+                "nmae": 4.8699311618550665,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1801.8745298863746
+          }
+        },
+        "snapshot_mae": 712.1518661400199
+      }
+    },
+    {
+      "candidate_id": "ridge-horizontal-age1-alpha0.1",
+      "estimator_family": "ridge",
+      "feature_set": "horizontal",
+      "include_age": true,
+      "parameters": {
+        "alpha": 0.1
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 711.0127390262859,
+        "macro_bearing_nmae": 2.0127745501205827,
+        "median_bearing_mae": 124.27971144384276,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 102.44515893174518,
+            "nmae": 0.6525169358709885,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 124.27971144384276,
+            "nmae": 0.23360848015759916,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1906.3133467032694,
+            "nmae": 5.15219823433316,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 102.44515893174518,
+            "macro_bearing_nmae": 0.6525169358709885,
+            "median_bearing_mae": 102.44515893174518,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 102.44515893174518,
+                "nmae": 0.6525169358709885,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 102.44515893174518
+          },
+          "2": {
+            "macro_bearing_mae": 124.27971144384276,
+            "macro_bearing_nmae": 0.23360848015759916,
+            "median_bearing_mae": 124.27971144384276,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 124.27971144384276,
+                "nmae": 0.23360848015759916,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 124.27971144384276
+          },
+          "3": {
+            "macro_bearing_mae": 1906.3133467032694,
+            "macro_bearing_nmae": 5.15219823433316,
+            "median_bearing_mae": 1906.3133467032694,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1906.3133467032694,
+                "nmae": 5.15219823433316,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1906.3133467032694
+          }
+        },
+        "snapshot_mae": 743.568430261485
+      }
+    },
+    {
+      "candidate_id": "ridge-dual-age1-alpha0.1",
+      "estimator_family": "ridge",
+      "feature_set": "dual",
+      "include_age": true,
+      "parameters": {
+        "alpha": 0.1
+      },
+      "validation_interval_metrics": {},
+      "validation_point_metrics": {
+        "macro_bearing_mae": 714.3650955295055,
+        "macro_bearing_nmae": 2.0715128306902364,
+        "median_bearing_mae": 157.3763649416171,
+        "per_bearing": {
+          "Bearing1_3": {
+            "mae_minutes": 150.51865194006132,
+            "nmae": 0.9587175282806454,
+            "observed_lifetime_minutes": 157.0,
+            "snapshots": 158
+          },
+          "Bearing2_3": {
+            "mae_minutes": 157.3763649416171,
+            "nmae": 0.29582023485266373,
+            "observed_lifetime_minutes": 532.0,
+            "snapshots": 533
+          },
+          "Bearing3_3": {
+            "mae_minutes": 1835.2002697068378,
+            "nmae": 4.960000728937399,
+            "observed_lifetime_minutes": 370.0,
+            "snapshots": 371
+          }
+        },
+        "per_condition": {
+          "1": {
+            "macro_bearing_mae": 150.51865194006132,
+            "macro_bearing_nmae": 0.9587175282806454,
+            "median_bearing_mae": 150.51865194006132,
+            "per_bearing": {
+              "Bearing1_3": {
+                "mae_minutes": 150.51865194006132,
+                "nmae": 0.9587175282806454,
+                "observed_lifetime_minutes": 157.0,
+                "snapshots": 158
+              }
+            },
+            "snapshot_mae": 150.51865194006132
+          },
+          "2": {
+            "macro_bearing_mae": 157.3763649416171,
+            "macro_bearing_nmae": 0.29582023485266373,
+            "median_bearing_mae": 157.3763649416171,
+            "per_bearing": {
+              "Bearing2_3": {
+                "mae_minutes": 157.3763649416171,
+                "nmae": 0.29582023485266373,
+                "observed_lifetime_minutes": 532.0,
+                "snapshots": 533
+              }
+            },
+            "snapshot_mae": 157.3763649416171
+          },
+          "3": {
+            "macro_bearing_mae": 1835.2002697068378,
+            "macro_bearing_nmae": 4.960000728937399,
+            "median_bearing_mae": 1835.2002697068378,
+            "per_bearing": {
+              "Bearing3_3": {
+                "mae_minutes": 1835.2002697068378,
+                "nmae": 4.960000728937399,
+                "observed_lifetime_minutes": 370.0,
+                "snapshots": 371
+              }
+            },
+            "snapshot_mae": 1835.2002697068378
+          }
+        },
+        "snapshot_mae": 742.4885589281058
+      }
+    }
+  ],
+  "runtime": {
+    "numpy": "2.0.2",
+    "python": "3.9.6",
+    "scikit_learn": "1.6.1"
+  },
+  "schema_version": 1,
+  "selected_candidate": {
+    "candidate_id": "ridge-vertical-age1-alpha100-empirical80",
+    "estimator_family": "ridge_empirical_interval",
+    "feature_set": "vertical",
+    "include_age": true,
+    "parameters": {
+      "alpha": 100.0,
+      "empirical_interval_coverage": 0.8,
+      "interval_radius_minutes": 454.50372778050576,
+      "sample_weighting": "equal_total_weight_per_bearing"
+    },
+    "validation_interval_metrics": {
+      "macro_bearing_coverage": 0.8020517019800516,
+      "mean_width_minutes": 868.705479721989,
+      "per_bearing": {
+        "Bearing1_3": {
+          "coverage": 0.7215189873417721,
+          "mean_width_minutes": 867.2516206969357,
+          "snapshots": 158
+        },
+        "Bearing2_3": {
+          "coverage": 1.0,
+          "mean_width_minutes": 846.4720992982486,
+          "snapshots": 533
+        },
+        "Bearing3_3": {
+          "coverage": 0.6846361185983828,
+          "mean_width_minutes": 901.2664001850942,
+          "snapshots": 371
+        }
+      },
+      "per_condition": {
+        "1": {
+          "macro_bearing_coverage": 0.7215189873417721,
+          "mean_width_minutes": 867.2516206969357,
+          "per_bearing": {
+            "Bearing1_3": {
+              "coverage": 0.7215189873417721,
+              "mean_width_minutes": 867.2516206969357,
+              "snapshots": 158
+            }
+          },
+          "snapshot_coverage": 0.7215189873417721
+        },
+        "2": {
+          "macro_bearing_coverage": 1.0,
+          "mean_width_minutes": 846.4720992982486,
+          "per_bearing": {
+            "Bearing2_3": {
+              "coverage": 1.0,
+              "mean_width_minutes": 846.4720992982486,
+              "snapshots": 533
+            }
+          },
+          "snapshot_coverage": 1.0
+        },
+        "3": {
+          "macro_bearing_coverage": 0.6846361185983828,
+          "mean_width_minutes": 901.2664001850942,
+          "per_bearing": {
+            "Bearing3_3": {
+              "coverage": 0.6846361185983828,
+              "mean_width_minutes": 901.2664001850942,
+              "snapshots": 371
+            }
+          },
+          "snapshot_coverage": 0.6846361185983828
+        }
+      },
+      "snapshot_coverage": 0.8483992467043314
+    },
+    "validation_point_metrics": {
+      "macro_bearing_mae": 317.88302880477744,
+      "macro_bearing_nmae": 1.3081149246826913,
+      "median_bearing_mae": 395.21480067125304,
+      "per_bearing": {
+        "Bearing1_3": {
+          "mae_minutes": 402.364766167406,
+          "nmae": 2.562832905524879,
+          "observed_lifetime_minutes": 157.0,
+          "snapshots": 158
+        },
+        "Bearing2_3": {
+          "mae_minutes": 156.06951957567313,
+          "nmae": 0.2933637586008893,
+          "observed_lifetime_minutes": 532.0,
+          "snapshots": 533
+        },
+        "Bearing3_3": {
+          "mae_minutes": 395.21480067125304,
+          "nmae": 1.0681481099223056,
+          "observed_lifetime_minutes": 370.0,
+          "snapshots": 371
+        }
+      },
+      "per_condition": {
+        "1": {
+          "macro_bearing_mae": 402.364766167406,
+          "macro_bearing_nmae": 2.562832905524879,
+          "median_bearing_mae": 402.364766167406,
+          "per_bearing": {
+            "Bearing1_3": {
+              "mae_minutes": 402.364766167406,
+              "nmae": 2.562832905524879,
+              "observed_lifetime_minutes": 157.0,
+              "snapshots": 158
+            }
+          },
+          "snapshot_mae": 402.364766167406
+        },
+        "2": {
+          "macro_bearing_mae": 156.06951957567313,
+          "macro_bearing_nmae": 0.2933637586008893,
+          "median_bearing_mae": 156.06951957567313,
+          "per_bearing": {
+            "Bearing2_3": {
+              "mae_minutes": 156.06951957567313,
+              "nmae": 0.2933637586008893,
+              "observed_lifetime_minutes": 532.0,
+              "snapshots": 533
+            }
+          },
+          "snapshot_mae": 156.06951957567313
+        },
+        "3": {
+          "macro_bearing_mae": 395.21480067125304,
+          "macro_bearing_nmae": 1.0681481099223056,
+          "median_bearing_mae": 395.21480067125304,
+          "per_bearing": {
+            "Bearing3_3": {
+              "mae_minutes": 395.21480067125304,
+              "nmae": 1.0681481099223056,
+              "observed_lifetime_minutes": 370.0,
+              "snapshots": 371
+            }
+          },
+          "snapshot_mae": 395.21480067125304
+        }
+      },
+      "snapshot_mae": 276.2555348750648
+    }
+  },
+  "selection_metric": "macro_bearing_mae",
+  "test_metrics_status": "not_evaluated",
+  "vibration_gate": {
+    "age_only_macro_bearing_mae": 775.9163322012968,
+    "bearing_count_passed": true,
+    "bearings_improved": 2,
+    "candidate_macro_bearing_mae": 317.88302880477744,
+    "macro_improvement_fraction": 0.5903127494391899,
+    "macro_passed": true,
+    "minimum_bearings_improved": 2,
+    "minimum_macro_improvement_fraction": 0.05,
+    "passed": true
+  }
+}

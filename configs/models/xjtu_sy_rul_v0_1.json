@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "model_version": "vibralens-rul-0.1.0",
+  "random_state": 2026,
+  "quantiles": [0.1, 0.5, 0.9],
+  "feature_sets": ["horizontal", "vertical", "dual"],
+  "include_age_options": [false, true],
+  "ridge_alphas": [0.1, 1.0, 10.0, 100.0],
+  "minimum_macro_mae_improvement_fraction": 0.05,
+  "minimum_validation_bearings_improved": 2,
+  "empirical_interval_coverage": 0.8,
+  "gradient_boosting_candidates": [
+    {
+      "learning_rate": 0.05,
+      "max_iter": 300,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 40,
+      "l2_regularization": 1.0
+    },
+    {
+      "learning_rate": 0.03,
+      "max_iter": 500,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 60,
+      "l2_regularization": 5.0
+    }
+  ]
+}
