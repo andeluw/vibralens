@@ -1,0 +1,34 @@
+{
+  "dataset": "XJTU-SY",
+  "protocol": "crule-development",
+  "unit_of_independence": "bearing",
+  "assignments": {
+    "train": [
+      "Bearing1_1",
+      "Bearing1_2",
+      "Bearing2_1",
+      "Bearing2_2",
+      "Bearing3_1",
+      "Bearing3_2"
+    ],
+    "validation": [
+      "Bearing1_3",
+      "Bearing2_3",
+      "Bearing3_3"
+    ],
+    "test": [
+      "Bearing1_4",
+      "Bearing1_5",
+      "Bearing2_4",
+      "Bearing2_5",
+      "Bearing3_4",
+      "Bearing3_5"
+    ]
+  },
+  "restrictions": [
+    "Split complete bearings before preprocessing or window construction.",
+    "Fit normalization and learned transforms using train bearings only.",
+    "Do not use test bearings for tuning, calibration, or threshold selection.",
+    "Use rotating held-out-bearing evaluation for final evidence."
+  ]
+}

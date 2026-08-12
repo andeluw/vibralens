@@ -1,0 +1,20 @@
+{
+  "bearing_counts_by_split": {
+    "test": 6,
+    "train": 6,
+    "validation": 3
+  },
+  "bearings": 15,
+  "conditions": 3,
+  "csv_files": 9216,
+  "dataset": "XJTU-SY",
+  "expected_header": "Horizontal_vibration_signals,Vertical_vibration_signals",
+  "rows_verified": true,
+  "signal_rows_per_csv": 32768,
+  "snapshot_counts_by_split": {
+    "test": 2184,
+    "train": 5970,
+    "validation": 1062
+  },
+  "status": "passed"
+}
