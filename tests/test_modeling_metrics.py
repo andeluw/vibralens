@@ -20,6 +20,7 @@ class ModelingMetricTests(unittest.TestCase):
         )
 
         self.assertAlmostEqual(2.5, report["macro_bearing_mae"])
+        self.assertAlmostEqual(1.5, report["bearing_mae_std"])
         self.assertAlmostEqual(1.75, report["snapshot_mae"])
         self.assertAlmostEqual(0.325, report["macro_bearing_nmae"])
         self.assertEqual({"A", "B"}, set(report["per_bearing"]))

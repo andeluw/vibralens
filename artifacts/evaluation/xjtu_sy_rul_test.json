@@ -1,5 +1,70 @@
 {
-  "bundle_metadata_sha256": "0ee42e81836165f1eb8e512508f9b29bc3545dea106fcc10d0e0dcebaa567b0c",
+  "bundle_metadata_sha256": "2693b69881037ab0ab42aa191f828bd2ca1de9ac5d976e15f06ef2aede95c262",
+  "diagnostics": {
+    "invalid_interval_corrections": 0,
+    "near_end_of_life": {
+      "Bearing1_4": {
+        "absolute_error_minutes": 778.1001606145037,
+        "actual_rul_minutes": 0.0,
+        "age_minutes": 121.0,
+        "condition_id": 1,
+        "interval_covered": false,
+        "optimistic_rul_minutes": 1232.6038883950096,
+        "pessimistic_rul_minutes": 323.59643283399794,
+        "predicted_rul_minutes": 778.1001606145037
+      },
+      "Bearing1_5": {
+        "absolute_error_minutes": 0.0,
+        "actual_rul_minutes": 0.0,
+        "age_minutes": 51.0,
+        "condition_id": 1,
+        "interval_covered": true,
+        "optimistic_rul_minutes": 454.50372778050576,
+        "pessimistic_rul_minutes": 0.0,
+        "predicted_rul_minutes": 0.0
+      },
+      "Bearing2_4": {
+        "absolute_error_minutes": 0.0,
+        "actual_rul_minutes": 0.0,
+        "age_minutes": 41.0,
+        "condition_id": 2,
+        "interval_covered": true,
+        "optimistic_rul_minutes": 454.50372778050576,
+        "pessimistic_rul_minutes": 0.0,
+        "predicted_rul_minutes": 0.0
+      },
+      "Bearing2_5": {
+        "absolute_error_minutes": 0.0,
+        "actual_rul_minutes": 0.0,
+        "age_minutes": 338.0,
+        "condition_id": 2,
+        "interval_covered": true,
+        "optimistic_rul_minutes": 454.50372778050576,
+        "pessimistic_rul_minutes": 0.0,
+        "predicted_rul_minutes": 0.0
+      },
+      "Bearing3_4": {
+        "absolute_error_minutes": 276.2478361779839,
+        "actual_rul_minutes": 0.0,
+        "age_minutes": 1514.0,
+        "condition_id": 3,
+        "interval_covered": true,
+        "optimistic_rul_minutes": 730.7515639584897,
+        "pessimistic_rul_minutes": 0.0,
+        "predicted_rul_minutes": 276.2478361779839
+      },
+      "Bearing3_5": {
+        "absolute_error_minutes": 0.0,
+        "actual_rul_minutes": 0.0,
+        "age_minutes": 113.0,
+        "condition_id": 3,
+        "interval_covered": true,
+        "optimistic_rul_minutes": 454.50372778050576,
+        "pessimistic_rul_minutes": 0.0,
+        "predicted_rul_minutes": 0.0
+      }
+    }
+  },
   "held_out_bearings": [
     "Bearing1_4",
     "Bearing1_5",
@@ -110,6 +175,7 @@
   ],
   "model_version": "vibralens-rul-0.1.0",
   "point_metrics": {
+    "bearing_mae_std": 120.87438971370815,
     "macro_bearing_mae": 347.0103599553345,
     "macro_bearing_nmae": 4.140274953281949,
     "median_bearing_mae": 411.14532513460904,
@@ -153,6 +219,7 @@
     },
     "per_condition": {
       "1": {
+        "bearing_mae_std": 9.447634940350753,
         "macro_bearing_mae": 447.8964916947749,
         "macro_bearing_nmae": 6.188369966429811,
         "median_bearing_mae": 447.8964916947749,
@@ -173,6 +240,7 @@
         "snapshot_mae": 451.6972643719275
       },
       "2": {
+        "bearing_mae_std": 97.80188369713375,
         "macro_bearing_mae": 325.3461965657726,
         "macro_bearing_nmae": 5.496946455349853,
         "median_bearing_mae": 325.3461965657726,
@@ -193,6 +261,7 @@
         "snapshot_mae": 249.10693289635338
       },
       "3": {
+        "bearing_mae_std": 131.35417840085583,
         "macro_bearing_mae": 267.7883916054559,
         "macro_bearing_nmae": 0.7355084380661838,
         "median_bearing_mae": 267.7883916054559,

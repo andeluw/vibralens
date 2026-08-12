@@ -813,6 +813,67 @@ def _predict_matrix(estimator: object, matrix: ModelMatrix) -> np.ndarray:
     return predictions
 
 
+def prediction_diagnostics(
+    matrix: ModelMatrix,
+    predictions: np.ndarray,
+    lower: np.ndarray,
+    upper: np.ndarray,
+) -> Dict[str, object]:
+    """Describe final-snapshot behavior without aggregating bearings away."""
+    point = np.asarray(predictions, dtype=np.float64)
+    lower_values = np.asarray(lower, dtype=np.float64)
+    upper_values = np.asarray(upper, dtype=np.float64)
+    expected_shape = matrix.targets.shape
+    if any(
+        values.shape != expected_shape
+        for values in (point, lower_values, upper_values)
+    ):
+        raise TrainingError("diagnostic prediction arrays have invalid shapes")
+    if not all(
+        np.isfinite(values).all()
+        for values in (point, lower_values, upper_values)
+    ):
+        raise TrainingError("diagnostic prediction arrays contain non-finite values")
+    if (
+        np.any(point < 0.0)
+        or np.any(lower_values < 0.0)
+        or np.any(upper_values < 0.0)
+    ):
+        raise TrainingError("diagnostic RUL values cannot be negative")
+    invalid_interval_corrections = int(np.sum(lower_values > upper_values))
+    if invalid_interval_corrections:
+        raise TrainingError("diagnostic intervals are not ordered")
+
+    near_end_of_life: Dict[str, object] = {}
+    for bearing_id in sorted(set(matrix.bearing_ids.tolist())):
+        bearing_indices = np.flatnonzero(matrix.bearing_ids == bearing_id)
+        minimum_target = float(np.min(matrix.targets[bearing_indices]))
+        candidates = bearing_indices[
+            matrix.targets[bearing_indices] == minimum_target
+        ]
+        index = int(candidates[np.argmax(matrix.ages_minutes[candidates])])
+        near_end_of_life[str(bearing_id)] = {
+            "condition_id": int(matrix.condition_ids[index]),
+            "age_minutes": float(matrix.ages_minutes[index]),
+            "actual_rul_minutes": float(matrix.targets[index]),
+            "predicted_rul_minutes": float(point[index]),
+            "pessimistic_rul_minutes": float(lower_values[index]),
+            "optimistic_rul_minutes": float(upper_values[index]),
+            "absolute_error_minutes": float(
+                abs(point[index] - matrix.targets[index])
+            ),
+            "interval_covered": bool(
+                lower_values[index]
+                <= matrix.targets[index]
+                <= upper_values[index]
+            ),
+        }
+    return {
+        "invalid_interval_corrections": invalid_interval_corrections,
+        "near_end_of_life": near_end_of_life,
+    }
+
+
 def _assert_close(actual: float, expected: float, description: str) -> None:
     if not math.isclose(actual, expected, rel_tol=0.0, abs_tol=1e-9):
         raise TrainingError(
@@ -947,6 +1008,7 @@ def finalize_model(
     metadata: Dict[str, object] = {
         "bundle_format_version": BUNDLE_FORMAT_VERSION,
         "model_version": str(selection["model_version"]),
+        "dataset": "XJTU-SY",
         "estimator_family": "ridge_empirical_interval",
         "feature_set": str(selected["feature_set"]),
         "include_age": bool(selected["include_age"]),
@@ -959,6 +1021,24 @@ def finalize_model(
         "empirical_interval_coverage": float(
             selected["parameters"]["empirical_interval_coverage"]  # type: ignore[index]
         ),
+        "target_definition": {
+            "name": "absolute_remaining_life",
+            "unit": "dataset_minutes",
+            "final_snapshot_rul_minutes": 0.0,
+        },
+        "interval_definition": {
+            "method": "bearing_balanced_validation_absolute_residual",
+            "empirical_coverage": float(
+                selected["parameters"]["empirical_interval_coverage"]  # type: ignore[index]
+            ),
+            "formal_coverage_guarantee": False,
+        },
+        "split_definition": {
+            "unit_of_independence": "complete_bearing",
+            "train_bearing_indices": [1, 2],
+            "validation_bearing_indices": [3],
+            "test_bearing_indices": [4, 5],
+        },
         "sample_weighting": "equal_total_weight_per_bearing",
         "fingerprints": {
             **dict(selection["fingerprints"]),  # type: ignore[arg-type]
@@ -996,6 +1076,12 @@ def finalize_model(
         "held_out_conditions": sorted(set(test.condition_ids.tolist())),
         "point_metrics": test_point,
         "interval_metrics": test_interval,
+        "diagnostics": prediction_diagnostics(
+            test,
+            test_predictions,
+            np.maximum(test_predictions - radius, 0.0),
+            test_predictions + radius,
+        ),
         "limitations": limitations,
     }
     _write_json(test_report_path, test_report)

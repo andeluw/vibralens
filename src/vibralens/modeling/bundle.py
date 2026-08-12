@@ -11,6 +11,12 @@ from typing import Mapping, Tuple
 import joblib
 import numpy as np
 
+from vibralens.data.xjtu_sy import (
+    EXPECTED_HEADER,
+    SAMPLING_RATE_HZ,
+    SIGNAL_ROWS_PER_SNAPSHOT,
+)
+
 
 BUNDLE_FORMAT_VERSION = 1
 
@@ -71,10 +77,20 @@ class RulModelBundle:
             raise BundleCompatibilityError("bundle has invalid feature_set")
         if not self.feature_names or self.feature_names[0] != "condition_id":
             raise BundleCompatibilityError("bundle feature schema must start with condition_id")
+        if len(set(self.feature_names)) != len(self.feature_names):
+            raise BundleCompatibilityError("bundle feature schema contains duplicates")
         if self.include_age != ("age_minutes" in self.feature_names):
             raise BundleCompatibilityError("bundle age schema is inconsistent")
         if not self.supported_condition_ids:
             raise BundleCompatibilityError("bundle has no supported conditions")
+        if (
+            len(set(self.supported_condition_ids)) != len(self.supported_condition_ids)
+            or any(
+                isinstance(value, bool) or not isinstance(value, int) or value < 1
+                for value in self.supported_condition_ids
+            )
+        ):
+            raise BundleCompatibilityError("bundle supported conditions are invalid")
         if (
             not math.isfinite(self.interval_radius_minutes)
             or self.interval_radius_minutes < 0.0
@@ -97,6 +113,53 @@ class RulModelBundle:
             raise BundleCompatibilityError("bundle metadata model version disagrees")
         if tuple(self.metadata.get("feature_names", ())) != self.feature_names:
             raise BundleCompatibilityError("bundle metadata feature schema disagrees")
+        if self.metadata.get("feature_set") != self.feature_set:
+            raise BundleCompatibilityError("bundle metadata feature set disagrees")
+        if self.metadata.get("include_age") != self.include_age:
+            raise BundleCompatibilityError("bundle metadata age schema disagrees")
+        if (
+            tuple(self.metadata.get("supported_condition_ids", ()))
+            != self.supported_condition_ids
+        ):
+            raise BundleCompatibilityError("bundle metadata conditions disagree")
+        if self.metadata.get("interval_radius_minutes") != self.interval_radius_minutes:
+            raise BundleCompatibilityError("bundle metadata interval radius disagrees")
+        if self.metadata.get("dataset") != "XJTU-SY":
+            raise BundleCompatibilityError("bundle dataset metadata is invalid")
+        if self.metadata.get("expected_raw_header") != EXPECTED_HEADER:
+            raise BundleCompatibilityError("bundle raw header contract is incompatible")
+        if self.metadata.get("expected_signal_rows") != SIGNAL_ROWS_PER_SNAPSHOT:
+            raise BundleCompatibilityError("bundle signal-row contract is incompatible")
+        if self.metadata.get("sampling_rate_hz") != SAMPLING_RATE_HZ:
+            raise BundleCompatibilityError("bundle sampling-rate contract is incompatible")
+        target_definition = self.metadata.get("target_definition")
+        if not isinstance(target_definition, Mapping) or (
+            target_definition.get("name") != "absolute_remaining_life"
+            or target_definition.get("unit") != "dataset_minutes"
+        ):
+            raise BundleCompatibilityError("bundle target definition is incompatible")
+        interval_definition = self.metadata.get("interval_definition")
+        if not isinstance(interval_definition, Mapping) or not interval_definition.get(
+            "method"
+        ):
+            raise BundleCompatibilityError("bundle interval definition is invalid")
+        fingerprints = self.metadata.get("fingerprints")
+        if not isinstance(fingerprints, Mapping) or not fingerprints:
+            raise BundleCompatibilityError("bundle fingerprints are missing")
+        if not all(
+            isinstance(value, str)
+            and len(value) == 64
+            and all(character in "0123456789abcdef" for character in value)
+            for value in fingerprints.values()
+        ):
+            raise BundleCompatibilityError("bundle fingerprints are invalid")
+        limitations = self.metadata.get("limitations")
+        if (
+            not isinstance(limitations, list)
+            or not limitations
+            or not all(isinstance(value, str) and value for value in limitations)
+        ):
+            raise BundleCompatibilityError("bundle limitations are invalid")
 
     def predict(
         self,
@@ -175,7 +238,7 @@ def save_bundle(
 
 
 def load_bundle(path: Path) -> RulModelBundle:
-    """Load a bundle and reject corrupt or incompatible artifacts."""
+    """Load a bundle and reject corrupt, incompatible, or split metadata."""
     path = Path(path)
     try:
         bundle = joblib.load(path)
@@ -184,4 +247,16 @@ def load_bundle(path: Path) -> RulModelBundle:
     if not isinstance(bundle, RulModelBundle):
         raise BundleCompatibilityError("artifact is not a RulModelBundle")
     bundle.validate()
+    metadata_path = path.with_suffix(".json")
+    try:
+        with metadata_path.open("r", encoding="utf-8") as stream:
+            sidecar = json.load(stream)
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise BundleError(
+            "cannot load model metadata sidecar: {}".format(metadata_path)
+        ) from error
+    if not isinstance(sidecar, Mapping) or dict(sidecar) != dict(bundle.metadata):
+        raise BundleCompatibilityError(
+            "model metadata sidecar disagrees with joblib bundle"
+        )
     return bundle

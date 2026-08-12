@@ -36,15 +36,19 @@ The validation gate required at least 5% macro-bearing MAE improvement over age-
 |---|---:|
 | Validation age-only macro-bearing MAE | 775.916 min |
 | Validation selected macro-bearing MAE | 317.883 min |
+| Validation across-bearing MAE standard deviation | 114.457 min |
 | Validation macro-bearing interval coverage | 80.21% |
 | Validation mean interval width | 868.705 min |
 | Held-out macro-bearing MAE | 347.010 min |
+| Held-out across-bearing MAE standard deviation | 120.874 min |
 | Held-out snapshot MAE | 363.443 min |
 | Held-out macro-bearing interval coverage | 62.42% |
 | Held-out snapshot interval coverage | 69.00% |
 | Held-out mean interval width | 873.644 min |
 
 The lower held-out coverage shows that the empirical interval does not transfer uniformly across bearing runs. It should be presented as uncertainty context, not a calibrated deployment guarantee.
+
+The near-end-of-life diagnostics make the weakest case explicit: at the final `Bearing1_4` snapshot, actual RUL is zero while the model predicts `778.100` minutes and its lower bound remains `323.596` minutes. The final `Bearing3_4` point estimate is also late at `276.248` minutes, although zero remains inside that interval. Four other final held-out snapshots clip to a zero-minute point estimate. These examples are recorded for all six test bearings rather than hidden behind the aggregate score.
 
 Machine-readable evidence is stored in:
 

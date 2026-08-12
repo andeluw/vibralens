@@ -1,5 +1,6 @@
 {
   "bundle_format_version": 1,
+  "dataset": "XJTU-SY",
   "empirical_interval_coverage": 0.8,
   "estimator_family": "ridge_empirical_interval",
   "expected_raw_header": "Horizontal_vibration_signals,Vertical_vibration_signals",
@@ -31,6 +32,11 @@
     "selection_sha256": "c7075fb29789d0a70158c3fd4049c0fe64d13f2799301b46b345914194bfa4e7"
   },
   "include_age": true,
+  "interval_definition": {
+    "empirical_coverage": 0.8,
+    "formal_coverage_guarantee": false,
+    "method": "bearing_balanced_validation_absolute_residual"
+  },
   "interval_radius_minutes": 454.50372778050576,
   "limitations": [
     "Validated on experimental XJTU-SY bearing runs, not factory deployment data.",
@@ -46,11 +52,30 @@
   },
   "sample_weighting": "equal_total_weight_per_bearing",
   "sampling_rate_hz": 25600,
+  "split_definition": {
+    "test_bearing_indices": [
+      4,
+      5
+    ],
+    "train_bearing_indices": [
+      1,
+      2
+    ],
+    "unit_of_independence": "complete_bearing",
+    "validation_bearing_indices": [
+      3
+    ]
+  },
   "supported_condition_ids": [
     1,
     2,
     3
   ],
+  "target_definition": {
+    "final_snapshot_rul_minutes": 0.0,
+    "name": "absolute_remaining_life",
+    "unit": "dataset_minutes"
+  },
   "validation_interval_metrics": {
     "macro_bearing_coverage": 0.8020517019800516,
     "mean_width_minutes": 868.705479721989,
@@ -112,6 +137,7 @@
     "snapshot_coverage": 0.8483992467043314
   },
   "validation_point_metrics": {
+    "bearing_mae_std": 114.45665650783008,
     "macro_bearing_mae": 317.88302880477744,
     "macro_bearing_nmae": 1.3081149246826913,
     "median_bearing_mae": 395.21480067125304,
@@ -137,6 +163,7 @@
     },
     "per_condition": {
       "1": {
+        "bearing_mae_std": 0.0,
         "macro_bearing_mae": 402.364766167406,
         "macro_bearing_nmae": 2.562832905524879,
         "median_bearing_mae": 402.364766167406,
@@ -151,6 +178,7 @@
         "snapshot_mae": 402.364766167406
       },
       "2": {
+        "bearing_mae_std": 0.0,
         "macro_bearing_mae": 156.06951957567313,
         "macro_bearing_nmae": 0.2933637586008893,
         "median_bearing_mae": 156.06951957567313,
@@ -165,6 +193,7 @@
         "snapshot_mae": 156.06951957567313
       },
       "3": {
+        "bearing_mae_std": 0.0,
         "macro_bearing_mae": 395.21480067125304,
         "macro_bearing_nmae": 1.0681481099223056,
         "median_bearing_mae": 395.21480067125304,

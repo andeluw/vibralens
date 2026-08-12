@@ -76,6 +76,7 @@ def evaluate_point_predictions(
         "snapshot_mae": float(np.mean(absolute_errors)),
         "macro_bearing_mae": float(np.mean(bearing_maes)),
         "median_bearing_mae": float(np.median(bearing_maes)),
+        "bearing_mae_std": float(np.std(bearing_maes)),
         "macro_bearing_nmae": (
             float(np.mean(bearing_nmaes)) if bearing_nmaes else None
         ),

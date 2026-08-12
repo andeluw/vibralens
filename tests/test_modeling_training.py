@@ -10,7 +10,7 @@ from unittest import mock
 import numpy as np
 
 from vibralens.features.vibration import FEATURE_COLUMN_NAMES
-from vibralens.modeling.table import FeatureTable
+from vibralens.modeling.table import FeatureTable, build_model_matrix
 from vibralens.modeling.training import (
     ExperimentConfig,
     TrainingError,
@@ -20,6 +20,7 @@ from vibralens.modeling.training import (
     load_experiment_config,
     passes_vibration_gate,
     postprocess_quantiles,
+    prediction_diagnostics,
     select_quantile_candidate,
     select_ridge_candidate,
     run_selection,
@@ -410,6 +411,42 @@ class ModelingTrainingTests(unittest.TestCase):
 
         self.assertEqual(0, exit_code)
         verify.assert_called_once()
+
+    def test_reports_near_end_of_life_examples_for_every_test_bearing(self) -> None:
+        matrix = FeatureTable(
+            vibration=np.zeros((4, len(FEATURE_COLUMN_NAMES))),
+            rul_minutes=np.array([2.0, 0.0, 3.0, 0.0]),
+            age_minutes=np.array([0.0, 2.0, 0.0, 3.0]),
+            condition_ids=np.array([1, 1, 2, 2]),
+            bearing_ids=np.array(["A", "A", "B", "B"]),
+            snapshot_indices=np.array([1, 3, 1, 4]),
+            splits=np.array(["test", "test", "test", "test"]),
+            feature_names=tuple(FEATURE_COLUMN_NAMES),
+        )
+        model_matrix = build_model_matrix(
+            matrix,
+            matrix.splits == "test",
+            feature_set="vertical",
+            include_age=True,
+        )
+
+        diagnostics = prediction_diagnostics(
+            model_matrix,
+            predictions=np.array([1.0, 4.0, 2.0, 1.0]),
+            lower=np.array([0.0, 0.0, 0.0, 0.0]),
+            upper=np.array([2.0, 5.0, 3.0, 2.0]),
+        )
+
+        self.assertEqual(0, diagnostics["invalid_interval_corrections"])
+        self.assertEqual({"A", "B"}, set(diagnostics["near_end_of_life"]))
+        self.assertEqual(
+            0.0,
+            diagnostics["near_end_of_life"]["A"]["actual_rul_minutes"],
+        )
+        self.assertEqual(
+            4.0,
+            diagnostics["near_end_of_life"]["A"]["predicted_rul_minutes"],
+        )
 
 
 if __name__ == "__main__":

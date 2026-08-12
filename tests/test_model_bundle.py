@@ -39,6 +39,21 @@ class ModelBundleTests(unittest.TestCase):
             "feature_names": ["condition_id", "age_minutes", "vertical_rms"],
             "supported_condition_ids": [1, 2, 3],
             "interval_radius_minutes": 10.0,
+            "expected_raw_header": (
+                "Horizontal_vibration_signals,Vertical_vibration_signals"
+            ),
+            "expected_signal_rows": 32768,
+            "sampling_rate_hz": 25600,
+            "dataset": "XJTU-SY",
+            "target_definition": {
+                "name": "absolute_remaining_life",
+                "unit": "dataset_minutes",
+            },
+            "interval_definition": {
+                "method": "validation_absolute_residual",
+                "empirical_coverage": 0.8,
+            },
+            "fingerprints": {"selection_sha256": "0" * 64},
             "limitations": ["Empirical interval"],
         }
         return RulModelBundle(
@@ -105,6 +120,24 @@ class ModelBundleTests(unittest.TestCase):
             corrupt.write_bytes(b"this is not a joblib artifact")
             with self.assertRaisesRegex(BundleError, "cannot load model bundle"):
                 load_bundle(corrupt)
+
+    def test_rejects_missing_or_disagreeing_metadata_sidecar(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            bundle_path = root / "model.joblib"
+            metadata_path = root / "model.json"
+            bundle = self._bundle()
+            joblib.dump(bundle, bundle_path)
+
+            with self.assertRaisesRegex(BundleError, "metadata sidecar"):
+                load_bundle(bundle_path)
+
+            metadata_path.write_text(
+                json.dumps({**bundle.metadata, "model_version": "wrong"}),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(BundleCompatibilityError, "sidecar"):
+                load_bundle(bundle_path)
 
     def test_rejects_estimator_feature_count_mismatch(self) -> None:
         bundle = self._bundle()
