@@ -2,6 +2,57 @@
 
 VibraLens is an uncertainty-aware maintenance decision-support project for rolling-element bearings. The first milestone is a leakage-safe, reproducible XJTU-SY data layer; raw data is intentionally kept outside this repository.
 
+## Quick setup
+
+Requirements:
+
+- Git;
+- [uv](https://docs.astral.sh/uv/);
+- all six XJTU-SY multipart RAR volumes;
+- approximately 20 GB of available local storage for the archives, extracted dataset, and working headroom.
+
+Clone the project and install its locked environment:
+
+```bash
+git clone https://github.com/andeluw/vibralens.git
+cd vibralens
+uv sync --locked
+uv run python -m unittest discover -s tests -v
+```
+
+Keep the raw dataset outside the repository. The recommended layout is:
+
+```text
+workspace/
+├── vibralens/
+└── XJTU-SY_Bearing_Datasets/
+    └── Data/
+        ├── XJTU-SY_Bearing_Datasets.part01.rar
+        ├── ... part02 through part06 ...
+        └── XJTU-SY_Bearing_Datasets/
+            ├── 35Hz12kN/
+            ├── 37.5Hz11kN/
+            └── 40Hz10kN/
+```
+
+Place all six RAR volumes together and extract only `part01.rar` once with WinRAR or another compatible RAR application. The extractor automatically reads parts 02-06. Do not run each volume separately, and do not use `tar` for these RAR files.
+
+Then run the full audit and feature extraction from `vibralens/`:
+
+```bash
+uv run vibralens-build-manifest \
+  --dataset-root ../XJTU-SY_Bearing_Datasets/Data/XJTU-SY_Bearing_Datasets \
+  --output-directory artifacts/data
+
+uv run vibralens-extract-features \
+  --dataset-root ../XJTU-SY_Bearing_Datasets/Data/XJTU-SY_Bearing_Datasets \
+  --manifest artifacts/data/xjtu_sy_manifest.csv \
+  --output-directory artifacts/features \
+  --workers 8
+```
+
+See [docs/setup.md](docs/setup.md) for detailed macOS/Linux and Windows instructions, expected outputs, and troubleshooting.
+
 ## Current verified milestone
 
 - one row per XJTU-SY vibration snapshot;
