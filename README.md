@@ -8,9 +8,13 @@ VibraLens is an uncertainty-aware maintenance decision-support project for rolli
 - complete-bearing train, validation, and test assignments;
 - absolute remaining life in observation intervals/minutes;
 - full header and row-count validation for every CSV;
+- deterministic time- and frequency-domain features for both vibration channels;
+- full finite-value and feature-domain validation;
 - no raw vibration data copied into Git.
 
 The generated audit report is in `artifacts/data/xjtu_sy_audit.json`. The generated snapshot manifest is in `artifacts/data/xjtu_sy_manifest.csv`.
+
+The feature contract is documented in `docs/feature-protocol.md`. Its audit report is tracked at `artifacts/features/xjtu_sy_feature_audit.json`; the reproducible 5.5 MB feature CSV remains a local generated artifact.
 
 ## Reproduce the data audit
 
@@ -30,8 +34,18 @@ The command reads all CSV bodies by default. Use `--skip-row-verification` only 
 uv run python -m unittest discover -s tests -v
 ```
 
+## Extract baseline features
+
+```bash
+uv run vibralens-extract-features \
+  --dataset-root ../XJTU-SY_Bearing_Datasets/Data/XJTU-SY_Bearing_Datasets \
+  --manifest artifacts/data/xjtu_sy_manifest.csv \
+  --output-directory artifacts/features \
+  --workers 8
+```
+
 ## Dataset boundary
 
 The raw dataset is external to this repository and must not be committed. Manifest paths are relative to the supplied dataset root, so another team member can reproduce the audit without using the original machine's absolute path.
 
-See [docs/data-protocol.md](docs/data-protocol.md) for label semantics, split constraints, and limitations.
+See [docs/data-protocol.md](docs/data-protocol.md) for label semantics and split constraints, and [docs/feature-protocol.md](docs/feature-protocol.md) for exact feature definitions and limitations.

@@ -11,4 +11,5 @@ __pycache__/
 
 # Generated model artifacts can be large and must be versioned deliberately.
 artifacts/models/
-artifacts/features/
+artifacts/features/*.csv
+artifacts/features/*.parquet

@@ -1,0 +1,1 @@
+"""Deterministic vibration feature extraction."""

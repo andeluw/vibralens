@@ -1,0 +1,54 @@
+{
+  "bearings": 15,
+  "dataset": "XJTU-SY",
+  "feature_artifact_sha256": "7f51b2d6d36cd21da65301d406b8e4af47a8abc6ce2c4b5c83a9f12558a623e0",
+  "feature_columns": 28,
+  "feature_names": [
+    "horizontal_mean",
+    "horizontal_std",
+    "horizontal_rms",
+    "horizontal_abs_peak",
+    "horizontal_peak_to_peak",
+    "horizontal_skewness",
+    "horizontal_kurtosis",
+    "horizontal_crest_factor",
+    "horizontal_dominant_frequency_hz",
+    "horizontal_spectral_centroid_hz",
+    "horizontal_spectral_entropy",
+    "horizontal_band_energy_low_fraction",
+    "horizontal_band_energy_mid_fraction",
+    "horizontal_band_energy_high_fraction",
+    "vertical_mean",
+    "vertical_std",
+    "vertical_rms",
+    "vertical_abs_peak",
+    "vertical_peak_to_peak",
+    "vertical_skewness",
+    "vertical_kurtosis",
+    "vertical_crest_factor",
+    "vertical_dominant_frequency_hz",
+    "vertical_spectral_centroid_hz",
+    "vertical_spectral_entropy",
+    "vertical_band_energy_low_fraction",
+    "vertical_band_energy_mid_fraction",
+    "vertical_band_energy_high_fraction"
+  ],
+  "non_finite_values": 0,
+  "raw_ranges": {
+    "horizontal": {
+      "max": 54.411067962646484,
+      "min": -48.49485397338867
+    },
+    "vertical": {
+      "max": 49.77381229400635,
+      "min": -53.18035125732422
+    }
+  },
+  "snapshots": 9216,
+  "snapshots_by_split": {
+    "test": 2184,
+    "train": 5970,
+    "validation": 1062
+  },
+  "status": "passed"
+}

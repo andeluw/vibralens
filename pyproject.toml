@@ -8,10 +8,13 @@ version = "0.1.0"
 description = "Leakage-safe bearing prognostics and maintenance decision support."
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+  "numpy>=1.26,<3",
+]
 
 [project.scripts]
 vibralens-build-manifest = "vibralens.data.xjtu_sy:main"
+vibralens-extract-features = "vibralens.features.vibration:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
