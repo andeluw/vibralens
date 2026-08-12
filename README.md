@@ -1,6 +1,17 @@
 # VibraLens
 
-VibraLens is an uncertainty-aware maintenance decision-support project for rolling-element bearings. The first milestone is a leakage-safe, reproducible XJTU-SY data layer; raw data is intentionally kept outside this repository.
+VibraLens provides a reproducible pipeline for validating XJTU-SY rolling-bearing vibration data and converting it into a leakage-aware feature dataset for prognostics experiments.
+
+This repository contains:
+
+- a full structural audit of the 15 XJTU-SY bearing runs and 9,216 vibration snapshots;
+- deterministic train, validation, and test assignments at the complete-bearing level;
+- absolute remaining-life labels in dataset minutes;
+- strict two-channel signal validation;
+- 28 deterministic time- and frequency-domain features;
+- automated tests for dataset, split, and feature contracts.
+
+Raw vibration data is intentionally kept outside Git.
 
 ## Quick setup
 
@@ -53,19 +64,19 @@ uv run vibralens-extract-features \
 
 See [docs/setup.md](docs/setup.md) for detailed macOS/Linux and Windows instructions, expected outputs, and troubleshooting.
 
-## Current verified milestone
+## Verified outputs
 
 - one row per XJTU-SY vibration snapshot;
 - complete-bearing train, validation, and test assignments;
 - absolute remaining life in observation intervals/minutes;
 - full header and row-count validation for every CSV;
 - deterministic time- and frequency-domain features for both vibration channels;
-- full finite-value and feature-domain validation;
+- finite-value validation and hand-checked feature calculations;
 - no raw vibration data copied into Git.
 
 The generated audit report is in `artifacts/data/xjtu_sy_audit.json`. The generated snapshot manifest is in `artifacts/data/xjtu_sy_manifest.csv`.
 
-The feature contract is documented in `docs/feature-protocol.md`. Its audit report is tracked at `artifacts/features/xjtu_sy_feature_audit.json`; the reproducible 5.5 MB feature CSV remains a local generated artifact.
+The feature contract is documented in `docs/feature-protocol.md`. Its audit report is tracked at `artifacts/features/xjtu_sy_feature_audit.json`; the reproducible feature CSV remains a local generated artifact.
 
 ## Reproduce the data audit
 
@@ -77,7 +88,7 @@ uv run vibralens-build-manifest \
   --output-directory artifacts/data
 ```
 
-The command reads all CSV bodies by default. Use `--skip-row-verification` only for a faster path/count check; do not use the abbreviated check as final evidence.
+The command reads all CSV bodies by default. Use `--skip-row-verification` only for a faster path/count check; the abbreviated check does not provide full audit evidence.
 
 ## Run tests
 
@@ -85,7 +96,7 @@ The command reads all CSV bodies by default. Use `--skip-row-verification` only 
 uv run python -m unittest discover -s tests -v
 ```
 
-## Extract baseline features
+## Extract vibration features
 
 ```bash
 uv run vibralens-extract-features \
@@ -97,6 +108,6 @@ uv run vibralens-extract-features \
 
 ## Dataset boundary
 
-The raw dataset is external to this repository and must not be committed. Manifest paths are relative to the supplied dataset root, so another team member can reproduce the audit without using the original machine's absolute path.
+The raw dataset is external to this repository and must not be committed. Manifest paths are relative to the supplied dataset root so the audit is portable across machines.
 
 See [docs/data-protocol.md](docs/data-protocol.md) for label semantics and split constraints, and [docs/feature-protocol.md](docs/feature-protocol.md) for exact feature definitions and limitations.

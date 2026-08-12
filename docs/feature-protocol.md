@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This stage converts every two-channel XJTU-SY vibration snapshot into a compact, interpretable feature row for the first leakage-safe baseline. The transformation is deterministic and does not learn parameters from any split.
+This stage converts every two-channel XJTU-SY vibration snapshot into a compact, interpretable feature row for reproducible modeling. The transformation is deterministic and does not learn parameters from any split.
 
-Feature definitions were fixed before evaluating a model. Extracting features from test snapshots is required for eventual inference and does not fit or tune anything; test labels and test performance must remain unused during model selection.
+Feature definitions are fixed in source code. Extracting features does not fit or tune parameters; test labels and test performance remain outside model selection.
 
 ## Input contract
 
@@ -71,10 +71,10 @@ The full local run produced:
 - train/validation/test counts of 5,970 / 1,062 / 2,184;
 - a SHA-256 digest stored in `artifacts/features/xjtu_sy_feature_audit.json`.
 
-Independent checks enforce non-negative magnitude features, frequencies in `[0, 12,800]` Hz, entropy in `[0, 1]`, and per-channel energy fractions summing to one.
+The feature definitions produce non-negative magnitudes, frequencies in `[0, 12,800]` Hz, normalized entropy, and per-channel energy fractions that sum to one for non-constant signals. Hand-checked unit tests cover representative time- and frequency-domain calculations.
 
 ## Modeling boundary
 
 No normalization, feature selection, threshold fitting, or dimensionality reduction occurs here. Any such operation must be fitted using training bearings only inside the model pipeline.
 
-The first baseline should use this feature table without adding overlapping temporal windows. Temporal models can be compared later after the snapshot baseline establishes an honest reference point.
+The generated artifact contains one independent record identity per snapshot and does not create overlapping temporal windows. The bearing-level split remains attached to every feature row.

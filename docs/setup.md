@@ -120,7 +120,7 @@ It creates:
 - `artifacts/data/xjtu_sy_manifest.csv`;
 - `artifacts/data/xjtu_sy_audit.json`.
 
-The command reads every CSV body and verifies its header and 32,768 signal rows. `--skip-row-verification` is available for quick path checks but is not acceptable as final audit evidence.
+The command reads every CSV body and verifies its header and 32,768 signal rows. `--skip-row-verification` is available for quick path checks but does not produce full audit evidence.
 
 ## 5. Extract deterministic features
 
@@ -153,7 +153,7 @@ The command creates:
 
 The feature CSV is derived data and intentionally ignored by Git. It can always be recreated from the external raw dataset and committed source code.
 
-## 6. Final verification
+## 6. Verify the generated outputs
 
 ```bash
 uv run python -m unittest discover -s tests -v

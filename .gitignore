@@ -6,6 +6,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
+AGENTS.md
+
 # Raw data must remain outside the submission repository.
 /data/
 
