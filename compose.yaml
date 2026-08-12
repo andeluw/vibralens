@@ -1,0 +1,7 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      VIBRALENS_MODEL_PATH: /app/artifacts/models/vibralens_rul_v0_1.joblib

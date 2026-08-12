@@ -170,6 +170,75 @@ Expected verified dataset totals:
 | Raw channels | 2 |
 | Extracted features | 28 |
 
+## 7. Reproduce model selection
+
+The split is fixed by complete bearing: bearing indices 1-2 train, index 3 validates model choice, and indices 4-5 remain held out for the one-time final evaluation. Never choose a candidate from held-out results.
+
+Run validation-only selection:
+
+```bash
+uv run vibralens-train-rul select \
+  --features artifacts/features/xjtu_sy_features.csv \
+  --feature-audit artifacts/features/xjtu_sy_feature_audit.json \
+  --manifest artifacts/data/xjtu_sy_manifest.csv \
+  --config configs/models/xjtu_sy_rul_v0_1.json \
+  --output artifacts/evaluation/xjtu_sy_rul_selection.json
+```
+
+The frozen selection report records `test_metrics_status: not_evaluated`. Finalization refuses to overwrite existing outputs. On a clean reproduction, run it once only after committing or otherwise freezing the passing selection:
+
+```bash
+uv run vibralens-train-rul finalize \
+  --features artifacts/features/xjtu_sy_features.csv \
+  --feature-audit artifacts/features/xjtu_sy_feature_audit.json \
+  --manifest artifacts/data/xjtu_sy_manifest.csv \
+  --config configs/models/xjtu_sy_rul_v0_1.json \
+  --selection artifacts/evaluation/xjtu_sy_rul_selection.json \
+  --bundle artifacts/models/vibralens_rul_v0_1.joblib \
+  --metadata artifacts/models/vibralens_rul_v0_1.json \
+  --test-report artifacts/evaluation/xjtu_sy_rul_test.json
+```
+
+Verify fingerprints, bundle compatibility, and reproduced validation metrics without reading or rewriting the held-out report:
+
+```bash
+uv run vibralens-train-rul verify \
+  --features artifacts/features/xjtu_sy_features.csv \
+  --feature-audit artifacts/features/xjtu_sy_feature_audit.json \
+  --manifest artifacts/data/xjtu_sy_manifest.csv \
+  --config configs/models/xjtu_sy_rul_v0_1.json \
+  --selection artifacts/evaluation/xjtu_sy_rul_selection.json \
+  --bundle artifacts/models/vibralens_rul_v0_1.joblib \
+  --metadata artifacts/models/vibralens_rul_v0_1.json
+```
+
+See [model.md](model.md) for the selected model, metrics, and limitations.
+
+## 8. Run inference
+
+Generate a synthetic production-shape input, then use either the CLI or API:
+
+```bash
+uv run python scripts/generate_smoke_snapshot.py /tmp/vibralens-smoke.csv
+
+uv run vibralens-predict \
+  --snapshot /tmp/vibralens-smoke.csv \
+  --bearing-age-minutes 100 \
+  --condition-id 1 \
+  --planned-break-minutes 60 \
+  --model artifacts/models/vibralens_rul_v0_1.joblib
+```
+
+Or start the API:
+
+```bash
+docker compose up --build
+curl --fail http://localhost:8000/health
+docker compose down
+```
+
+See [api.md](api.md) for request fields, response semantics, and status codes.
+
 ## Troubleshooting
 
 ### “Dataset root does not exist”

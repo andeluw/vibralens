@@ -1,6 +1,6 @@
 # VibraLens
 
-VibraLens provides a reproducible pipeline for validating XJTU-SY rolling-bearing vibration data and converting it into a leakage-aware feature dataset for prognostics experiments.
+VibraLens turns an XJTU-SY-format bearing vibration snapshot into an estimated remaining-useful-life (RUL) interval and a transparent planned-maintenance advisory. It includes the reproducible data and model pipeline, a versioned evaluated model, a JSON CLI, and a small HTTP API.
 
 This repository contains:
 
@@ -9,7 +9,10 @@ This repository contains:
 - absolute remaining-life labels in dataset minutes;
 - strict two-channel signal validation;
 - 28 deterministic time- and frequency-domain features;
-- automated tests for dataset, split, and feature contracts.
+- bearing-balanced model selection without test-bearing leakage;
+- a versioned Ridge RUL model with an empirical interval;
+- one inference service shared by the CLI and API;
+- automated tests for data, model, decision, and adapter contracts.
 
 Raw vibration data is intentionally kept outside Git.
 
@@ -18,9 +21,8 @@ Raw vibration data is intentionally kept outside Git.
 Requirements:
 
 - Git;
+- Docker with Compose;
 - [uv](https://docs.astral.sh/uv/);
-- all six XJTU-SY multipart RAR volumes;
-- approximately 20 GB of available local storage for the archives, extracted dataset, and working headroom.
 
 Clone the project and install its locked environment:
 
@@ -30,6 +32,30 @@ cd vibralens
 uv sync --locked
 uv run python -m unittest discover -s tests -v
 ```
+
+The committed model can be served without downloading the raw research dataset:
+
+```bash
+docker compose up --build
+```
+
+In another terminal:
+
+```bash
+uv run python scripts/generate_smoke_snapshot.py /tmp/vibralens-smoke.csv
+
+curl --fail -X POST http://localhost:8000/predict \
+  -F 'snapshot=@/tmp/vibralens-smoke.csv;type=text/csv' \
+  -F 'bearing_age_minutes=100' \
+  -F 'condition_id=1' \
+  -F 'planned_break_minutes=60'
+```
+
+Stop it with `docker compose down`. See [docs/api.md](docs/api.md) for the HTTP and CLI contracts and [docs/model.md](docs/model.md) for the model evidence and limitations.
+
+## Reproduce the data and model pipeline
+
+Full reproduction additionally requires all six XJTU-SY multipart RAR volumes and approximately 20 GB of storage for the archives, extracted dataset, and working headroom.
 
 Keep the raw dataset outside the repository. The recommended layout is:
 
@@ -71,6 +97,8 @@ See [docs/setup.md](docs/setup.md) for detailed macOS/Linux and Windows instruct
 - absolute remaining life in observation intervals/minutes;
 - full header and row-count validation for every CSV;
 - deterministic time- and frequency-domain features for both vibration channels;
+- a frozen vertical-feature Ridge model selected on three validation bearings;
+- held-out evaluation on six untouched test bearings;
 - finite-value validation and hand-checked feature calculations;
 - no raw vibration data copied into Git.
 
@@ -111,3 +139,5 @@ uv run vibralens-extract-features \
 The raw dataset is external to this repository and must not be committed. Manifest paths are relative to the supplied dataset root so the audit is portable across machines.
 
 See [docs/data-protocol.md](docs/data-protocol.md) for label semantics and split constraints, and [docs/feature-protocol.md](docs/feature-protocol.md) for exact feature definitions and limitations.
+
+The reported results are experimental evidence from XJTU-SY run-to-failure tests. They are not factory certification or a safety guarantee; unsupported operating conditions return an explicit abstention.
