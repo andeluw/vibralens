@@ -105,3 +105,9 @@ For a well-formed snapshot with an unsupported condition, HTTP 200 is deliberate
 | 500 | Unexpected inference failure; no prediction body is returned |
 
 The service has no authentication and is intended for local evaluation. Add deployment controls before exposing it to a network.
+
+## Browser access
+
+The API allows the local VibraLens frontend at `http://localhost:3000` by
+default. Set `VIBRALENS_ALLOWED_ORIGINS` to a comma-separated list of exact
+origins when the frontend runs elsewhere.
