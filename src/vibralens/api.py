@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from vibralens.inference import (
@@ -27,6 +28,20 @@ def create_app(
     service: Optional[PredictionService] = None,
 ) -> FastAPI:
     application = FastAPI(title="VibraLens", version="0.1.0")
+    allowed_origins = [
+        origin.strip()
+        for origin in os.environ.get(
+            "VIBRALENS_ALLOWED_ORIGINS",
+            "http://localhost:3000",
+        ).split(",")
+        if origin.strip()
+    ]
+    application.add_middleware(
+        CORSMiddleware,
+        allow_origins=allowed_origins,
+        allow_methods=["GET", "POST"],
+        allow_headers=["*"],
+    )
     active_service = service
     load_error: Optional[str] = None
     if active_service is None:

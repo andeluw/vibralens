@@ -53,6 +53,20 @@ curl --fail -X POST http://localhost:8000/predict \
 
 Stop it with `docker compose down`. See [docs/api.md](docs/api.md) for the HTTP and CLI contracts and [docs/model.md](docs/model.md) for the model evidence and limitations.
 
+## Run the frontend
+
+With the API running on port 8000, start the web workspace in a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`, add a valid two-channel CSV snapshot, enter the
+bearing context, and run the remaining-life estimate. To use a different API
+host, copy `frontend/.env.example` to `frontend/.env.local` and change the URL.
+
 ## Reproduce the data and model pipeline
 
 Full reproduction additionally requires all six XJTU-SY multipart RAR volumes and approximately 20 GB of storage for the archives, extracted dataset, and working headroom.

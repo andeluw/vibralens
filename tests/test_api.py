@@ -97,6 +97,23 @@ class InferenceApiTests(unittest.TestCase):
             model.json(),
         )
 
+    def test_local_frontend_origin_is_allowed(self) -> None:
+        client = TestClient(create_app(Path("unused.joblib"), service=FakeService()))
+
+        response = client.options(
+            "/predict",
+            headers={
+                "Origin": "http://localhost:3000",
+                "Access-Control-Request-Method": "POST",
+            },
+        )
+
+        self.assertEqual(200, response.status_code)
+        self.assertEqual(
+            "http://localhost:3000",
+            response.headers["access-control-allow-origin"],
+        )
+
     def test_predict_returns_service_response_and_removes_upload(self) -> None:
         service = FakeService()
         client = TestClient(create_app(Path("unused.joblib"), service=service))
