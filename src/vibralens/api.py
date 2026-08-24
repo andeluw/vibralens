@@ -32,7 +32,7 @@ def create_app(
         origin.strip()
         for origin in os.environ.get(
             "VIBRALENS_ALLOWED_ORIGINS",
-            "http://localhost:3000",
+            "http://localhost:3000,http://localhost:3003",
         ).split(",")
         if origin.strip()
     ]

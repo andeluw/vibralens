@@ -38,14 +38,6 @@ uv sync --locked
 
 `uv sync --locked` creates `.venv/` and installs the exact locked project dependencies without changing `uv.lock`.
 
-Verify the code before supplying data:
-
-```bash
-uv run python -m unittest discover -s tests -v
-```
-
-All tests must pass before continuing.
-
 ## 3. Prepare XJTU-SY
 
 Keep raw data outside the Git repository. A sibling directory makes the documented commands portable:
@@ -154,10 +146,6 @@ The command creates:
 The feature CSV is derived data and intentionally ignored by Git. It can always be recreated from the external raw dataset and committed source code.
 
 ## 6. Verify the generated outputs
-
-```bash
-uv run python -m unittest discover -s tests -v
-```
 
 Expected verified dataset totals:
 

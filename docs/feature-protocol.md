@@ -71,7 +71,7 @@ The full local run produced:
 - train/validation/test counts of 5,970 / 1,062 / 2,184;
 - a SHA-256 digest stored in `artifacts/features/xjtu_sy_feature_audit.json`.
 
-The feature definitions produce non-negative magnitudes, frequencies in `[0, 12,800]` Hz, normalized entropy, and per-channel energy fractions that sum to one for non-constant signals. Hand-checked unit tests cover representative time- and frequency-domain calculations.
+The feature definitions produce non-negative magnitudes, frequencies in `[0, 12,800]` Hz, normalized entropy, and per-channel energy fractions that sum to one for non-constant signals.
 
 ## Modeling boundary
 

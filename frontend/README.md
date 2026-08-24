@@ -18,14 +18,13 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`. The frontend expects the API at
+Open `http://localhost:3003`. The frontend expects the API at
 `http://localhost:8000`; override `NEXT_PUBLIC_VIBRALENS_API_URL` when needed.
 
 ## Verify
 
 ```bash
 npm run build
-npm test
 ```
 
 The UI accepts the same exact two-channel, 32,768-row CSV snapshot as the CLI

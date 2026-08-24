@@ -29,6 +29,7 @@
     "Split complete bearings before preprocessing or window construction.",
     "Fit normalization and learned transforms using train bearings only.",
     "Do not use test bearings for tuning, calibration, or threshold selection.",
-    "Use rotating held-out-bearing evaluation for final evidence."
+    "Evaluation uses a fixed complete-bearing holdout (CRULE 2/1/2), with six test bearings evaluated once.",
+    "Rotating held-out-bearing evaluation is not part of this protocol."
   ]
 }

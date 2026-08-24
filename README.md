@@ -11,8 +11,7 @@ This repository contains:
 - 28 deterministic time- and frequency-domain features;
 - bearing-balanced model selection without test-bearing leakage;
 - a versioned Ridge RUL model with an empirical interval;
-- one inference service shared by the CLI and API;
-- automated tests for data, model, decision, and adapter contracts.
+- one inference service shared by the CLI and API.
 
 Raw vibration data is intentionally kept outside Git.
 
@@ -30,7 +29,6 @@ Clone the project and install its locked environment:
 git clone https://github.com/andeluw/vibralens.git
 cd vibralens
 uv sync --locked
-uv run python -m unittest discover -s tests -v
 ```
 
 The committed model can be served without downloading the raw research dataset:
@@ -63,7 +61,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`, add a valid two-channel CSV snapshot, enter the
+Open `http://localhost:3003`, add a valid two-channel CSV snapshot, enter the
 bearing context, and run the remaining-life estimate. To use a different API
 host, copy `frontend/.env.example` to `frontend/.env.local` and change the URL.
 
@@ -113,7 +111,7 @@ See [docs/setup.md](docs/setup.md) for detailed macOS/Linux and Windows instruct
 - deterministic time- and frequency-domain features for both vibration channels;
 - a frozen vertical-feature Ridge model selected on three validation bearings;
 - held-out evaluation on six untouched test bearings;
-- finite-value validation and hand-checked feature calculations;
+- finite-value validation and deterministic feature calculations;
 - no raw vibration data copied into Git.
 
 The generated audit report is in `artifacts/data/xjtu_sy_audit.json`. The generated snapshot manifest is in `artifacts/data/xjtu_sy_manifest.csv`.
@@ -131,12 +129,6 @@ uv run vibralens-build-manifest \
 ```
 
 The command reads all CSV bodies by default. Use `--skip-row-verification` only for a faster path/count check; the abbreviated check does not provide full audit evidence.
-
-## Run tests
-
-```bash
-uv run python -m unittest discover -s tests -v
-```
 
 ## Extract vibration features
 
