@@ -6,6 +6,10 @@ Model version `vibralens-rul-0.1.0` estimates remaining useful life in dataset m
 
 This is experimental XJTU-SY evidence, not factory certification. The interval is not a formal safety guarantee, and the service abstains instead of extrapolating to unknown operating conditions.
 
+One dataset minute is one observation interval in the accelerated experiment.
+It is not evidence that the same number transfers directly to factory operating
+time.
+
 ## Data boundary
 
 All 15 run-to-failure bearings have one fixed role, with no snapshots from a bearing crossing roles:
@@ -17,6 +21,9 @@ All 15 run-to-failure bearings have one fixed role, with no snapshots from a bea
 | 4-5 | One-time held-out evaluation | 6 |
 
 Training uses bearing-balanced sample weights so every training run has equal total influence despite different lifetimes. Validation and test headline errors are macro-averaged across complete bearings.
+
+This is a fixed complete-bearing holdout, not rotating cross-validation. The
+six test bearings were evaluated once after model selection was frozen.
 
 ## Model ladder and selection
 

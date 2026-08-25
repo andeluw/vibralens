@@ -64,8 +64,20 @@ Send multipart form data:
 |---|---|---|
 | `snapshot` | CSV file | Exact two-channel, 32,768-row snapshot |
 | `bearing_age_minutes` | number >= 0 | Observed age at the snapshot |
-| `condition_id` | integer | XJTU-SY condition ID |
+| `condition_id` | integer | Evaluated speed/load regime; see below |
 | `planned_break_minutes` | number >= 0 | Time until the next planned stop |
+
+Supported operating conditions are:
+
+| `condition_id` | Shaft speed | Radial load |
+|---:|---:|---:|
+| 1 | 2,100 rpm | 12 kN |
+| 2 | 2,250 rpm | 11 kN |
+| 3 | 2,400 rpm | 10 kN |
+
+Bearing age and planned-break horizon use dataset minutes. In XJTU-SY, one
+snapshot is recorded each minute; these values should not be assumed to transfer
+directly to factory operating time without deployment validation.
 
 Example:
 
@@ -106,8 +118,14 @@ For a well-formed snapshot with an unsupported condition, HTTP 200 is deliberate
 
 The service has no authentication and is intended for local evaluation. Add deployment controls before exposing it to a network.
 
+The uploaded file is written to a temporary path for inference and removed at
+the end of the request, including validation and inference failures.
+
 ## Browser access
 
-The API allows the local VibraLens frontend at `http://localhost:3000` by
-default. Set `VIBRALENS_ALLOWED_ORIGINS` to a comma-separated list of exact
-origins when the frontend runs elsewhere.
+The VibraLens frontend runs at `http://localhost:3003`. The API allows local
+origins on ports 3000 and 3003 by default. Set `VIBRALENS_ALLOWED_ORIGINS` to a
+comma-separated list of exact origins when the frontend runs elsewhere.
+
+FastAPI's interactive OpenAPI documentation is available at
+`http://localhost:8000/docs` while the service is running.

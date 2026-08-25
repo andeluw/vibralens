@@ -14,12 +14,25 @@ Then start the frontend in a second terminal:
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
 Open `http://localhost:3003`. The frontend expects the API at
 `http://localhost:8000`; override `NEXT_PUBLIC_VIBRALENS_API_URL` when needed.
+
+The status control reports whether the API and committed model are ready. If it
+shows that the service is unavailable, confirm
+`curl --fail http://localhost:8000/health` succeeds.
+
+Generate a valid synthetic upload from the repository root with:
+
+```bash
+uv run python scripts/generate_smoke_snapshot.py /tmp/vibralens-smoke.csv
+```
+
+The synthetic snapshot verifies the complete software path but is not a
+physical bearing example.
 
 ## Verify
 

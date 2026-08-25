@@ -1,10 +1,36 @@
 # XJTU-SY data protocol
 
+## Source and permitted use
+
+The XJTU-SY accelerated-life bearing dataset is provided by Xi'an Jiaotong
+University and Changxing Sumyoung Technology. The
+[official repository](https://github.com/WangBiaoXJTU/xjtu-sy-bearing-datasets)
+describes it as publicly available for validating bearing prognostics
+algorithms and requests citation of the originating publication:
+
+> B. Wang, Y. Lei, N. Li, and N. Li, "A Hybrid Prognostics Approach for
+> Estimating Remaining Useful Life of Rolling Element Bearings," IEEE
+> Transactions on Reliability, 69(1), 401-412, 2020.
+> <https://doi.org/10.1109/TR.2018.2882682>
+
+The official repository does not publish a standard license file. VibraLens
+therefore does not redistribute the raw dataset. Reproduction requires users to
+obtain it from the provider and follow the provider's terms and citation
+request.
+
 ## Dataset grain
 
 The independent experimental unit is one bearing run. A CSV is one 1.28-second, two-channel vibration snapshot containing 32,768 samples at 25.6 kHz. Snapshots are recorded at one-minute intervals.
 
 The manifest contains one row per snapshot, but rows from the same bearing are not independent machines.
+
+The 15 bearings are distributed across three operating conditions:
+
+| Condition | Directory | Shaft speed | Radial load | Bearings |
+|---:|---|---:|---:|---:|
+| 1 | `35Hz12kN` | 2,100 rpm | 12 kN | 5 |
+| 2 | `37.5Hz11kN` | 2,250 rpm | 11 kN | 5 |
+| 3 | `40Hz10kN` | 2,400 rpm | 10 kN | 5 |
 
 ## Split protocol
 
@@ -19,6 +45,9 @@ The tracked split follows the CRULE assignment within each operating condition:
 The machine-readable assignment is in `configs/splits/xjtu_sy_crule.json`.
 
 This fixed assignment makes experiments reproducible while preserving the complete bearing as the independent unit. Because the dataset contains only 15 bearing runs, aggregate metrics must be accompanied by per-bearing results and their spread.
+
+This protocol is one fixed complete-bearing holdout. It is not rotating
+cross-validation or leave-one-bearing-out evaluation.
 
 ## Main target
 

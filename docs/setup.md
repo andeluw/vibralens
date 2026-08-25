@@ -5,7 +5,9 @@
 Install:
 
 - Git;
+- Docker with Compose, for the packaged inference service;
 - `uv`, the Python environment and package manager;
+- Node.js 22.13 or newer with npm, for the web interface;
 - WinRAR or another extractor compatible with this multipart RAR archive.
 
 The project supports Python 3.9 or newer. `uv` selects and manages the environment from `pyproject.toml` and `uv.lock`; a separately managed virtual environment is not required.
@@ -41,6 +43,12 @@ uv sync --locked
 ## 3. Prepare XJTU-SY
 
 Keep raw data outside the Git repository. A sibling directory makes the documented commands portable:
+
+Obtain the six archive volumes from the
+[official XJTU-SY repository](https://github.com/WangBiaoXJTU/xjtu-sy-bearing-datasets).
+The provider describes the dataset as publicly available and requests citation
+of <https://doi.org/10.1109/TR.2018.2882682>, but does not publish a standard
+license file. This repository does not redistribute the raw data.
 
 ```text
 workspace/
@@ -227,6 +235,24 @@ docker compose down
 
 See [api.md](api.md) for request fields, response semantics, and status codes.
 
+## 9. Run the web interface
+
+Keep the API running, then open a second terminal:
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+Open `http://localhost:3003`. The status control should report that the analysis
+service is online. Upload `/tmp/vibralens-smoke.csv`, enter the operating
+context, and run the assessment.
+
+The generated smoke snapshot is synthetic and only verifies the end-to-end
+software path. Use an original XJTU-SY CSV for a data-backed model
+demonstration.
+
 ## Troubleshooting
 
 ### “Dataset root does not exist”
@@ -252,3 +278,11 @@ The command parses more than 300 million two-channel sample rows and performs tw
 ### Raw data appears in Git status
 
 Raw data should not live inside the repository. Move it to a sibling directory. The root-level `data/` path is ignored only as an additional safeguard.
+
+### The web interface reports that the service is unavailable
+
+Confirm `curl --fail http://localhost:8000/health` succeeds and reports
+`"status":"ready"`. The frontend runs on port 3003 but sends inference requests
+to the API on port 8000. If the API is hosted elsewhere, copy
+`frontend/.env.example` to `frontend/.env.local` and update
+`NEXT_PUBLIC_VIBRALENS_API_URL` before restarting the frontend.
